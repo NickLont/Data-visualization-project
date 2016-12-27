@@ -10,9 +10,8 @@ import {count} from "rxjs/operator/count";
 
 export class BarChart implements  OnInit{
     measurements: Measurements[] = [];
-    // cosmoteMeasures : number = count(this.measurements
-    //     .filter(operator=> operator.operatorname==='GR_COSMOTE'));
-    // windMeasures : number = 0;
+    cosmoteMeasures : number  ;
+    windMeasures : number ;
 
     constructor( private _dataservice : DataService){}
     ngOnInit(){
@@ -34,7 +33,6 @@ export class BarChart implements  OnInit{
         {data: [65, 59, 80, 81, 56, 55, 40], label: 'Cosmote'},
         {data: [28, 48, 40, 19, 86, 27, 90], label: 'Vodafone'}
     ];
-
 
 
     // events
