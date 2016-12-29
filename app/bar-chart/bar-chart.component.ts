@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../_services/data.service";
-import {ChartsModule} from "ng2-charts";
 import {Measurements} from "../_models/measurements";
 import {ActivatedRoute} from "@angular/router";
 
@@ -11,36 +10,40 @@ import {ActivatedRoute} from "@angular/router";
 
 export class BarChart implements  OnInit{
     measurements : Measurements[]=[];
-    // windMeasurments: Measurements[]=[];
-    // cosmoteMeasurments: Measurements[]=[];
+    private windMeasurments: number= 0;
+    private cosmoteMeasurments: number= 0;
 
     public dataReady : boolean = false;
 
 
     constructor( private _dataservice : DataService,
-        private _route : ActivatedRoute
     ){}
     ngOnInit(){
-        // this._dataservice.getAll()
-        //     .subscribe(data => {
-        //         // this.measurements= data;
-        //         for(let d of data){
-        //             if(d.operatorname === 'GR_COSMOTE'){
-        //                 this.cosmoteMeasurments.push(d);
-        //                 this.cosmoteNum++;
-        //             }
-        //             else if (d.operatorname === 'GR_WIND'){
-        //                 this.windMeasurments.push(d);
-        //                 this.windNum++;
-        //             }
-        //         };
-        //         this.dataReady = true;
-            // } );
-        this.measurements = this._route.snapshot.data['measurements'];
+        this._dataservice.getAll()
+            .subscribe(data => {
+                this.measurements= data;
+                for(let d of data){
+                    if(d.operatorname==='GR_COSMOTE'){
+                        this.cosmoteMeasurments++;
+                    }
+                    else if(d.operatorname==='GR_WIND'){
+                        this.windMeasurments++;
+                    }
+                    let cosmoteData=[this.cosmoteMeasurments];
+                    let windData=[this.windMeasurments];
+                    let clone = JSON.parse(JSON.stringify(this.barChartData));
+                    clone[0].data = cosmoteData;
+                    clone[1].data = windData;
+                    this.barChartData = clone;
 
-        this.barChartData[0].data[0] = this.measurements.filter(m => m.operatorname === 'GR_COSMOTE').length  ;
+                }
+                console.log(this.measurements)
+            } );
+        // this.measurements = this._route.snapshot.data['measurements'];
 
-        this.barChartData[1].data[0] = this.measurements.filter(m => m.operatorname === 'GR_WIND').length;
+        // this.barChartData[0].data[0] = this.measurements.filter(m => m.operatorname === 'GR_COSMOTE').length  ;
+        //
+        // this.barChartData[1].data[0] = this.measurements.filter(m => m.operatorname === 'GR_WIND').length;
 
         this.dataReady = true;
     }

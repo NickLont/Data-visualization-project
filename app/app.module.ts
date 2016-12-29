@@ -10,7 +10,6 @@ import {DataConsumerPageComponent} from "./data-consumer-page/data-consumer-page
 import { BarChart } from './bar-chart/bar-chart.component';
 
 import {DataService} from "./_services/data.service";
-import {DataResolve} from "./_services/data-resolve.service";
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
@@ -25,6 +24,6 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
         BarChart
     ],
     bootstrap:    [ AppComponent ],
-    providers: [ DataService, DataResolve ]
+    providers: [ DataService ]
 })
 export class AppModule { }
