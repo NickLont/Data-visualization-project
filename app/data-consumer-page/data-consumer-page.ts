@@ -13,7 +13,6 @@ export class DataConsumerPageComponent implements OnInit   {
     this._dataservice.getAll()
       .subscribe(data => {
         this.measurements= data;
-        console.log('to mikos tou array einai: '+this.measurements.length);
       } );
   }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../_services/data.service";
+import {ChartsModule} from "ng2-charts";
 import {Measurements} from "../_models/measurements";
-import {count} from "rxjs/operator/count";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'bar-chart',
@@ -9,16 +10,39 @@ import {count} from "rxjs/operator/count";
 })
 
 export class BarChart implements  OnInit{
-    measurements: Measurements[] = [];
-    cosmoteMeasures : number  ;
-    windMeasures : number ;
+    measurements : Measurements[]=[];
+    // windMeasurments: Measurements[]=[];
+    // cosmoteMeasurments: Measurements[]=[];
 
-    constructor( private _dataservice : DataService){}
+    public dataReady : boolean = false;
+
+
+    constructor( private _dataservice : DataService,
+        private _route : ActivatedRoute
+    ){}
     ngOnInit(){
-        this._dataservice.getAll()
-            .subscribe(data => {
-                this.measurements= data;
-            } );
+        // this._dataservice.getAll()
+        //     .subscribe(data => {
+        //         // this.measurements= data;
+        //         for(let d of data){
+        //             if(d.operatorname === 'GR_COSMOTE'){
+        //                 this.cosmoteMeasurments.push(d);
+        //                 this.cosmoteNum++;
+        //             }
+        //             else if (d.operatorname === 'GR_WIND'){
+        //                 this.windMeasurments.push(d);
+        //                 this.windNum++;
+        //             }
+        //         };
+        //         this.dataReady = true;
+            // } );
+        this.measurements = this._route.snapshot.data['measurements'];
+
+        this.barChartData[0].data[0] = this.measurements.filter(m => m.operatorname === 'GR_COSMOTE').length  ;
+
+        this.barChartData[1].data[0] = this.measurements.filter(m => m.operatorname === 'GR_WIND').length;
+
+        this.dataReady = true;
     }
 
     public barChartOptions:any = {
@@ -30,10 +54,15 @@ export class BarChart implements  OnInit{
     public barChartLegend:boolean = true;
 
     public barChartData:any[] = [
-        {data: [65, 59, 80, 81, 56, 55, 40], label: 'Cosmote'},
-        {data: [28, 48, 40, 19, 86, 27, 90], label: 'Vodafone'}
+        {data: [0], label: 'Cosmote'},
+        {data: [0], label: 'Wind'}
     ];
 
+    // public renderLiveData(){
+    //     this.barChartData[0].data = this.cosmoteNum;
+    //     this.barChartData[1].data = this.windNum;
+    //
+    // }
 
     // events
     public chartClicked(e:any):void {
