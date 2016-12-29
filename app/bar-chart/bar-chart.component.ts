@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 
 export class BarChart implements  OnInit{
-    measurements : Measurements[]=[];
+    // measurements : Measurements[]=[];
     private windMeasurments: number= 0;
     private cosmoteMeasurments: number= 0;
 
@@ -21,7 +21,7 @@ export class BarChart implements  OnInit{
     ngOnInit(){
         this._dataservice.getAll()
             .subscribe(data => {
-                this.measurements= data;
+                // this.measurements= data;
                 for(let d of data){
                     if(d.operatorname==='GR_COSMOTE'){
                         this.cosmoteMeasurments++;
@@ -37,13 +37,7 @@ export class BarChart implements  OnInit{
                     this.barChartData = clone;
 
                 }
-                console.log(this.measurements)
             } );
-        // this.measurements = this._route.snapshot.data['measurements'];
-
-        // this.barChartData[0].data[0] = this.measurements.filter(m => m.operatorname === 'GR_COSMOTE').length  ;
-        //
-        // this.barChartData[1].data[0] = this.measurements.filter(m => m.operatorname === 'GR_WIND').length;
 
         this.dataReady = true;
     }
@@ -60,12 +54,6 @@ export class BarChart implements  OnInit{
         {data: [0], label: 'Cosmote'},
         {data: [0], label: 'Wind'}
     ];
-
-    // public renderLiveData(){
-    //     this.barChartData[0].data = this.cosmoteNum;
-    //     this.barChartData[1].data = this.windNum;
-    //
-    // }
 
     // events
     public chartClicked(e:any):void {
