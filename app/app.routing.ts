@@ -6,6 +6,6 @@ import {DataConsumerPageComponent} from "./data-consumer-page/data-consumer-page
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'dataconsumer', component: DataConsumerPageComponent},
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '', pathMatch:'full' }
   ];
 export const routing = RouterModule.forRoot(appRoutes);

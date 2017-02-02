@@ -50,6 +50,5 @@ export class DataService {
       networkType : r.networkType,
       node : r.node
     });
-    console.log('Parsed measurments:', measurments);
     return measurments;
   }
