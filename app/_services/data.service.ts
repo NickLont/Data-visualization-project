@@ -3,17 +3,20 @@ import { Observable } from 'rxjs/Rx';
 import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/map';
 import {Measurements} from "../_models/measurements";
+import { AuthenticationService} from './authentication.service';
 
 @Injectable()
 export class DataService {
-  private baseUrl : string = 'http://test.hua.gr:8080/HuaTester/measurement/';
-  public headers : Headers;
-
-  constructor(private _http : Http){
+    private baseUrl : string = 'http://test.hua.gr:8080/HuaTester/measurement/';
+    public headers : Headers;
+    constructor(
+        private _http : Http,
+        private _authenticationService : AuthenticationService){
     console.log('Data Service started');
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
-  }
+    this.headers.append('token', this._authenticationService.token);
+    }
 
   getAll(): Observable<Measurements[]>{
     return this._http
