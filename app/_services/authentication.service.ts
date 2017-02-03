@@ -28,7 +28,7 @@ export class AuthenticationService{
          return this.http
             .post(this.loginUrl, body, {headers: headers})
             .map((response:Response)=>{
-                //succesful login if there is a token in the response
+                //get token from header
                 let token = response.headers.get('Token');
                 console.log('ta headers einai: '+response.headers.values());
                 console.log('to token einai:'+ token);
@@ -46,28 +46,13 @@ export class AuthenticationService{
                     console.log('login failed');
                     return false;
                 }
-            }).catch(err=>{
+            })
+             // Catching error 401 of wrong credentials
+             .catch(err=>{
                 if (err.status ===401){
                     return Observable.of(false);
                 }
              });
-            //  .subscribe((response:Response)=>{
-            //      //succesful login if there is a token in the response
-            //      let token = response.headers.get('Token');
-            //      console.log('to token einai:'+ token);
-            //      if (token){
-            //          //set token
-            //          this.token = response.headers.get('token');
-            //          //store username and token in local storage
-            //          localStorage.setItem('currentUser', JSON.stringify({username: username, token: token}));
-            //          //succesful login
-            //          console.log('login succesful');
-            //      }
-            //      else {
-            //          //failed login
-            //          console.log('login failed');
-            //      }
-            //  });
     }
     logout():void{
         //clear token and remove currentUser from localStorage
