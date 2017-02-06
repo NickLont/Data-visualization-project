@@ -9,10 +9,13 @@ export class AuthenticationService{
     private loginUrl: string = 'http://test.hua.gr:8080/HuaTester/login/';
 
 
+
     constructor (private http:Http){
         //set token if stored in local storage
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.token = currentUser && currentUser.token;
+        if(JSON.parse(localStorage.getItem('currentUser'))) {
+            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            this.token = currentUser.token;
+        }
     }
 
     login(username: string, password: string) : Observable<boolean>{
@@ -34,7 +37,7 @@ export class AuthenticationService{
                 console.log('to token einai:'+ token);
                 if (token ){
                     //set token
-                    this.token = response.headers.get('token');
+                    this.token = response.headers.get('Token');
                     //store username and token in local storage
                     localStorage.setItem('currentUser', JSON.stringify({username: username, token: token}));
                     //succesful login
@@ -59,6 +62,15 @@ export class AuthenticationService{
         //clear token and remove currentUser from localStorage
         this.token = null;
         localStorage.removeItem('currentUser');
+    }
+
+    isLoggedIn():Observable<boolean>{
+        if(localStorage.getItem('currentUser') !== null){
+            return Observable.of(true);
+        }
+        else{
+            return Observable.of(false);
+        }
     }
 
     private handleError(error: Response | any) {

@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule }    from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppComponent }  from './app.component';
@@ -14,21 +15,29 @@ import { LoginComponent } from './login/login.component';
 import {DataService} from "./_services/data.service";
 import { AuthenticationService} from './_services/authentication.service';
 import { AuthGuard } from './_guards/auth.guard';
+import {NavBarService} from './_services/navBarService.service';
 
 
 @NgModule({
-    imports:      [ BrowserModule, routing, HttpModule, FormsModule ],
+    imports:[
+        BrowserModule,
+        routing,
+        HttpModule,
+        FormsModule,
+        NgbModule.forRoot()
+    ],
     declarations: [
-    AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    DataConsumerPageComponent,
-    LoginComponent
+        AppComponent,
+        NavbarComponent,
+        HomeComponent,
+        DataConsumerPageComponent,
+        LoginComponent
     ],
     providers: [
-      DataService,
-      AuthenticationService,
-      AuthGuard
+        DataService,
+        AuthenticationService,
+        AuthGuard,
+        NavBarService
     ],
     bootstrap:    [ AppComponent ]
 })

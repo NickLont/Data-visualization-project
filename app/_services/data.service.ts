@@ -7,15 +7,18 @@ import { AuthenticationService} from './authentication.service';
 
 @Injectable()
 export class DataService {
-    private baseUrl : string = 'http://test.hua.gr:8080/HuaTester/measurement/';
+    private baseUrl : string = 'http://test.hua.gr:8080/HuaTester/api/measurement/';
     public headers : Headers;
+
     constructor(
         private _http : Http,
         private _authenticationService : AuthenticationService){
     console.log('Data Service started');
     this.headers = new Headers();
+    this.headers.set('token', this._authenticationService.token);
     this.headers.append('Content-Type', 'application/json');
-    this.headers.append('token', this._authenticationService.token);
+    console.log('ta header keys einai: '+this.headers.keys());
+    console.log('ta header value einai: '+this.headers.values());
     }
 
   getAll(): Observable<Measurements[]>{
@@ -23,6 +26,13 @@ export class DataService {
       .get(this.baseUrl+'all', {headers : this.headers})
       .map((res: Response)=>mapMeasurments(res))
       .catch(this.handleError);
+  }
+
+  getOperators(){
+    return this._http
+        .get(this.baseUrl+'all', {headers : this.headers})
+        .map((res:Response)=>res.json())
+        .catch(this.handleError);
   }
 
   private handleError(error: Response | any) {

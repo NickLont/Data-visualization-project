@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from "../_services/authentication.service";
+import {Component} from '@angular/core';
+import {NavBarService} from "../_services/navBarService.service";
 
 @Component({
-  selector: 'navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: 'navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css'],
 })
 
-export class NavbarComponent implements OnInit{
+
+export class NavbarComponent{
     public currentUser: string=JSON.parse(localStorage.getItem('currentUser'));
+    public state:boolean = true;
 
-    constructor(_authenticationService : AuthenticationService){}
-    ngOnInit(){
+    constructor(private _navBarService : NavBarService){
+        this._navBarService.navState$.subscribe(state=>this.state = state);
     }
-
 }
