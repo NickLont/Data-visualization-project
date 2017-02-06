@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit   {
             .subscribe(result=>{
                 if(result === true){
                     this._navBarService.setNavState(true);
+                    this._navBarService.setUsername(this.model.username);
                     this._router.navigate(['/']);
                 }
                 else {
