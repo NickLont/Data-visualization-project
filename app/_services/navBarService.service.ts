@@ -6,12 +6,17 @@ export class NavBarService {
 
     //Observable boolean source
     private navStateSource = new Subject<boolean>();
+    private navUsernameSource = new Subject<string>();
 
     // Observable string stream
     navState$ = this.navStateSource.asObservable();
+    navUsername$ = this.navUsernameSource.asObservable();
 
     setNavState(state : boolean){
         this.navStateSource.next(state);
+    }
+    setUsername(name : string){
+        this.navUsernameSource.next(name);
     }
 
 

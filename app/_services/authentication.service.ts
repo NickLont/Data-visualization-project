@@ -55,6 +55,9 @@ export class AuthenticationService{
                 if (err.status ===401){
                     return Observable.of(false);
                 }
+                else if(err.status ===500){
+                    return Observable.of(false);
+                }
                 else{this.handleError}
              });
     }
