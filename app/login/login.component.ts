@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit   {
         this._authenticationService.login(this.model.username, this.model.password)
             .subscribe(result=>{
                 if(result === true){
+                    console.log("login succesful");
                     this._navBarService.setNavState(true);
                     this._navBarService.setUsername(this.model.username);
                     this._router.navigate(['/']);
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit   {
                     this.error = 'Username or password is incorrect';
                     this.loading = false;
                 }
+                //TODO write catch function
             });
     }
 }

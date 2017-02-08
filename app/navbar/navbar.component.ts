@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit{
 
     }
     ngOnInit(){
-        this._navBarService.setNavState(true);
+        this._navBarService.setNavState(false);
         this._navBarService.setUsername('');
     }
 }
