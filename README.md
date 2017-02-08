@@ -13,7 +13,7 @@ Get it now</a> if it's not already installed on your machine.
 by running `node -v` and `npm -v` in a terminal/console window.
 Older versions produce errors.
 
-## Create a new project based on the QuickStart
+## Create a new project
 
 Clone this repo into new project folder (e.g., `my-proj`).
 ```shell
