@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit   {
     ngOnInit(){
         //reset login status
         this._authenticationService.logout();
-        this._navBarService.setNavState(false);
+        this._navBarService.setUsername('');
+
     }
 
     login(){
@@ -29,7 +30,6 @@ export class LoginComponent implements OnInit   {
             .subscribe(result=>{
                 if(result === true){
                     console.log("login succesful");
-                    this._navBarService.setNavState(true);
                     this._navBarService.setUsername(this.model.username);
                     this._router.navigate(['/']);
                 }

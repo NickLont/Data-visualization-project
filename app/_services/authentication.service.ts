@@ -12,7 +12,7 @@ export class AuthenticationService{
 
     constructor (private http:Http){
         //set token if stored in local storage
-        if(JSON.parse(localStorage.getItem('currentUser'))) {
+        if(localStorage.getItem('currentUser')) {
             let currentUser = JSON.parse(localStorage.getItem('currentUser'));
             this.token = currentUser.token;
         }

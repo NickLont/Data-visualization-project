@@ -16,7 +16,6 @@ export class DataService {
     console.log('Data Service started');
     this.headers = new Headers();
     this.headers.set('token', this._authenticationService.token);
-    this.headers.append('Content-Type', 'application/json');
     console.log('ta header keys einai: '+this.headers.keys());
     console.log('ta header value einai: '+this.headers.values());
     }

@@ -15,7 +15,7 @@
             <li><a routerLink='/barchart'>Bar Charts</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li *ngIf="state"><a routerLink='/login'>Welcome <b>{{currentUser }}</b> (Logout)</a></li>
+          <li *ngIf="currentUser"><a routerLink='/login'>Welcome <b>{{currentUser }}</b> (Logout)</a></li>
         </ul>
     </div><!--/.nav-collapse -->
   </div>

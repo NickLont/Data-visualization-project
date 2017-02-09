@@ -17,6 +17,7 @@ export class NavBarService {
     }
     setUsername(name : string){
         this.navUsernameSource.next(name);
+        console.log('username set to: '+name);
     }
 
 
