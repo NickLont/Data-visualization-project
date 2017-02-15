@@ -8,38 +8,24 @@ import {ActivatedRoute} from "@angular/router";
     templateUrl: './bar-chart.component.html'
 })
 
-export class BarChart implements  OnInit{
-    // measurements : Measurements[]=[];
-    private windMeasurments: number= 0;
-    private cosmoteMeasurments: number= 0;
+export class BarChartComponent implements  OnInit{
 
     public dataReady : boolean = false;
-
 
     constructor( private _dataservice : DataService,
     ){}
     ngOnInit(){
-        this._dataservice.getAll()
-            .subscribe(data => {
-                // this.measurements= data;
-                for(let d of data){
-                    if(d.operatorname==='GR_COSMOTE'){
-                        this.cosmoteMeasurments++;
-                    }
-                    else if(d.operatorname==='GR_WIND'){
-                        this.windMeasurments++;
-                    }
-                    let cosmoteData=[this.cosmoteMeasurments];
-                    let windData=[this.windMeasurments];
+        this._dataservice.getOperators()
+            .subscribe(res => {
+                for(let r of res){
                     let clone = JSON.parse(JSON.stringify(this.barChartData));
-                    clone[0].data = cosmoteData;
-                    clone[1].data = windData;
+                    clone.push({data: [r.value], label: r.operatorname});
                     this.barChartData = clone;
-
                 }
+                this.dataReady = true;
+                console.log('data ready to parse');
             } );
 
-        this.dataReady = true;
     }
 
     public barChartOptions:any = {
@@ -50,10 +36,7 @@ export class BarChart implements  OnInit{
     public barChartType:string = 'bar';
     public barChartLegend:boolean = true;
 
-    public barChartData:any[] = [
-        {data: [0], label: 'Cosmote'},
-        {data: [0], label: 'Wind'}
-    ];
+    public barChartData:any[] = [];
 
     // events
     public chartClicked(e:any):void {

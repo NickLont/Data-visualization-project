@@ -19,6 +19,6 @@ export class NavBarService {
         this.navUsernameSource.next(name);
         console.log('username set to: '+name);
     }
-
+    //TODO ERROR HANDLING!
 
 }

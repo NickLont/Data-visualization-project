@@ -5,11 +5,13 @@ import {DataConsumerPageComponent} from "./data-consumer-page/data-consumer-page
 import { LoginComponent } from './login/login.component';
 
 import { AuthGuard } from './_guards/auth.guard';
+import {BarChartComponent} from "./bar-chart/bar-chart.component";
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'dataconsumer', component: DataConsumerPageComponent, canActivate: [AuthGuard]},
+  {path: 'barchart', component: BarChartComponent, canActivate: [AuthGuard]},
 
   { path: '**', redirectTo: '', pathMatch:'full' }
   ];
