@@ -9,7 +9,7 @@ export class DataConsumerPageComponent implements OnInit   {
 
   constructor( private _dataservice : DataService){}
   ngOnInit() {
-    this._dataservice.getOperators()
+    this._dataservice.getLevelStats('no','2013-10-20','2013-10-25')
       .subscribe(
           data => {
             this.measurements= data;

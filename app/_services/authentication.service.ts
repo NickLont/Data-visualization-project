@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthenticationService{
     public token: string;
-    private loginUrl: string = 'http://test.hua.gr:8080/HuaTester/login/';
+    private loginUrl: string = 'http://localhost:8081/login/';
 
 
 

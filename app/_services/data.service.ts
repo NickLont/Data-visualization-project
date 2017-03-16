@@ -7,7 +7,8 @@ import { AuthenticationService} from './authentication.service';
 
 @Injectable()
 export class DataService {
-    private baseUrl : string = 'http://test.hua.gr:8080/HuaTester/api/measurement/';
+    // private baseUrl : string = 'http://test.hua.gr:8080/HuaTester/api/';
+    private baseUrl : string = 'http://localhost:8081/api/';
     public headers : Headers;
 
     constructor(
@@ -23,17 +24,48 @@ export class DataService {
     //TODO change or remove get all
     getAll(): Observable<Measurements[]>{
         return this._http
-            .get(this.baseUrl+'all', {headers : this.headers})
+            .get(this.baseUrl+'measurement/all/', {headers : this.headers})
             .map((res: Response)=>mapMeasurments(res))
             .catch(this.handleError);
     }
 
     getOperators(){
         return this._http
-            .get(this.baseUrl+'all', {headers : this.headers})
+            .get(this.baseUrl+'measurement/all/', {headers : this.headers})
             .map((res:Response)=>res.json())
             .catch(this.handleError);
     }
+    getLevelStats(networkType : String, startDate?: String, endDate?: String){
+        if(networkType=='no'){
+            if(startDate ==null && endDate == null){
+                return this._http
+                    .get(this.baseUrl+'measurement/levelStats/', {headers : this.headers})
+                    .map((res:Response)=>res.json())
+                    .catch(this.handleError);
+            }
+            else if(startDate !=null && endDate != null){
+                return this._http
+                    .get(this.baseUrl+'measurement/levelStats/'+startDate+'/'+endDate, {headers : this.headers})
+                    .map((res:Response)=>res.json())
+                    .catch(this.handleError);
+            }
+        }
+        else if(networkType!='no'){
+            if(startDate ==null && endDate == null){
+                return this._http
+                    .get(this.baseUrl+'measurement/levelStats/'+networkType, {headers : this.headers})
+                    .map((res:Response)=>res.json())
+                    .catch(this.handleError);
+            }
+            else if(startDate !=null && endDate != null){
+                return this._http
+                    .get(this.baseUrl+'measurement/levelStats/'+startDate+'/'+endDate+'/'+networkType, {headers : this.headers})
+                    .map((res:Response)=>res.json())
+                    .catch(this.handleError);
+            }
+        }
+    }
+
 
     private handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure
