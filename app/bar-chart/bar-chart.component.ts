@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../_services/data.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'bar-chart',
@@ -9,12 +10,10 @@ import {DataService} from "../_services/data.service";
 export class BarChartComponent implements  OnInit{
 
     public dataReady : boolean = false;
-    model: any = [];
-    selectedValue : any = null;
-    measurementTypes=['Level', 'Uplink', 'Downlink'];
 
 
     constructor( private _dataservice : DataService,
+                 private _router : Router
     ){}
     ngOnInit(){
         this._dataservice.getOperators()
@@ -29,7 +28,12 @@ export class BarChartComponent implements  OnInit{
                 }
                 this.dataReady = true;
                 console.log('data ready to parse');
-            } );
+            }, err=>{
+                if(err==='Unauthorized'){
+                    console.log('aunauthorized and redirecting');
+                    this._router.navigate(['/login']);
+                }
+            } )
 
     }
 
@@ -66,8 +70,5 @@ export class BarChartComponent implements  OnInit{
         console.log(e);
     }
 
-    onSubmit(){
-        console.log('to type mou einai: '+this.model.type);
 
-    }
 }

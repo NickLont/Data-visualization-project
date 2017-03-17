@@ -35,17 +35,17 @@ export class DataService {
             .map((res:Response)=>res.json())
             .catch(this.handleError);
     }
-    getLevelStats(networkType : String, startDate?: String, endDate?: String){
+    getStats(measurementType : String, networkType : String, startDate?: String, endDate?: String){
         if(networkType=='no'){
             if(startDate ==null && endDate == null){
                 return this._http
-                    .get(this.baseUrl+'measurement/levelStats/', {headers : this.headers})
+                    .get(this.baseUrl+'measurement/'+measurementType+'/', {headers : this.headers})
                     .map((res:Response)=>res.json())
                     .catch(this.handleError);
             }
             else if(startDate !=null && endDate != null){
                 return this._http
-                    .get(this.baseUrl+'measurement/levelStats/'+startDate+'/'+endDate, {headers : this.headers})
+                    .get(this.baseUrl+'measurement/'+measurementType+'/'+startDate+'/'+endDate, {headers : this.headers})
                     .map((res:Response)=>res.json())
                     .catch(this.handleError);
             }
@@ -53,13 +53,13 @@ export class DataService {
         else if(networkType!='no'){
             if(startDate ==null && endDate == null){
                 return this._http
-                    .get(this.baseUrl+'measurement/levelStats/'+networkType, {headers : this.headers})
+                    .get(this.baseUrl+'measurement/'+measurementType+'/'+networkType, {headers : this.headers})
                     .map((res:Response)=>res.json())
                     .catch(this.handleError);
             }
             else if(startDate !=null && endDate != null){
                 return this._http
-                    .get(this.baseUrl+'measurement/levelStats/'+startDate+'/'+endDate+'/'+networkType, {headers : this.headers})
+                    .get(this.baseUrl+'measurement/'+measurementType+'/'+startDate+'/'+endDate+'/'+networkType, {headers : this.headers})
                     .map((res:Response)=>res.json())
                     .catch(this.handleError);
             }
@@ -70,7 +70,11 @@ export class DataService {
     private handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure
         let errMsg: string;
-        if (error instanceof Response) {
+        if(error.status===401){
+            console.log('unauthorized 401 error');
+            return Observable.throw('Unauthorized');
+        }
+        else if (error instanceof Response) {
             const body = error.json() || '';
             const err = body.error || JSON.stringify(body);
             errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
