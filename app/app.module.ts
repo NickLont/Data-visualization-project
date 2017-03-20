@@ -20,6 +20,8 @@ import {DataService} from "./_services/data.service";
 import { AuthenticationService} from './_services/authentication.service';
 import { AuthGuard } from './_guards/auth.guard';
 import {NavBarService} from './_services/navBarService.service';
+import { MyDatePickerModule } from 'mydatepicker';
+
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import {NavBarService} from './_services/navBarService.service';
         HttpModule,
         FormsModule,
         NgbModule.forRoot(),
-        ChartsModule
+        ChartsModule,
+        MyDatePickerModule
     ],
     declarations: [
         AppComponent,

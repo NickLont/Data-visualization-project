@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../_services/data.service";
 import {Router} from "@angular/router";
+import {IMyDateRange, IMyOptions} from 'mydatepicker';
+
 
 @Component({
     selector: 'stat-barcharts',
@@ -20,6 +22,17 @@ export class StatBarChartsComponent implements  OnInit{
         {name:'2G', value:'2g'},
         {name:'3G', value:'3g'}
     ];
+    private myDatePickerOptions: IMyOptions = {
+        //  options
+        dateFormat: 'yyyy-mm-dd',
+        disableUntil: {year: 2013, month: 7, day: 20},
+
+    };
+    private myDatePickerOptions2: IMyOptions = {
+        //  options
+        dateFormat: 'yyyy-mm-dd',
+
+    };
 
 
     constructor( private _dataservice : DataService,
@@ -28,13 +41,15 @@ export class StatBarChartsComponent implements  OnInit{
     ngOnInit(){
         this._dataservice.getStats('levelStats','no')
             .subscribe(res => {
+                this.model.type='levelStats';
+                this.model.gen='no';
+                // this.model.startDate={ date: { year: 2018, month: 10, day: 9 } };
                 for(let r of res){
                     this.barChartLabels.push(r.operatorname)
                     this.barChartData[0].data.push(r.avg);
                     this.barChartData[1].data.push(r.min);
                     this.barChartData[2].data.push(r.max);
-                    this.model.type='levelStats';
-                    this.model.gen='no';
+
                 }
                 this.dataReady = true;
             }, err=>{
@@ -87,6 +102,8 @@ export class StatBarChartsComponent implements  OnInit{
                 this.barChartData[1].data.push(r.min);
                 this.barChartData[2].data.push(r.max);
             }
+            console.log(this.model.startDate.formatted);
+            console.log(this.model.endDate.formatted);
             this.dataReady = true;
         } );
     }
