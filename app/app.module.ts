@@ -13,6 +13,7 @@ import {DataConsumerPageComponent} from "./data-consumer-page/data-consumer-page
 import { LoginComponent } from './login/login.component';
 import {BarChartComponent} from "./bar-chart/bar-chart.component";
 import {StatBarChartsComponent} from "./stat-barcharts/stat-barcharts.component";
+import { NetworkStatsComponent } from "./networkStats/networkStats.component";
 
 import {ChartsModule} from 'ng2-charts';
 
@@ -41,7 +42,8 @@ import { MyDatePickerModule } from 'mydatepicker';
         DataConsumerPageComponent,
         LoginComponent,
         BarChartComponent,
-        StatBarChartsComponent
+        StatBarChartsComponent,
+        NetworkStatsComponent
     ],
     providers: [
         DataService,

@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit{
         this._navBarService.navUsername$.subscribe(currentUser=> this.currentUser = currentUser);
 
     }
+    // Set ng on change too
     ngOnInit(){
         this._navBarService.setUsername(JSON.parse(localStorage.getItem('currentUser')).username);
     }

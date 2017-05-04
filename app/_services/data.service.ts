@@ -66,9 +66,29 @@ export class DataService {
         }
     }
 
+    getNetworkTypes(){
+        return this._http
+            .get(this.baseUrl+'measurement/networkTypes/', {headers : this.headers})
+            .map((res:Response)=>res.json())
+            .catch(this.handleError);
+    }
+
+    getOperatingSystems(){
+        return this._http
+            .get(this.baseUrl+'measurement/operatingSystems/', {headers : this.headers})
+            .map((res:Response)=>res.json())
+            .catch(this.handleError);
+    }
+
+    getVendors(){
+        return this._http
+            .get(this.baseUrl+'measurement/vendors/', {headers : this.headers})
+            .map((res:Response)=>res.json())
+            .catch(this.handleError);
+    }
+
 
     private handleError(error: Response | any) {
-        // In a real world app, we might use a remote logging infrastructure
         let errMsg: string;
         if(error.status===401){
             console.log('unauthorized 401 error');
@@ -87,7 +107,7 @@ export class DataService {
 
 }
 
-
+//Function chain to map the Measurements from the DB to our Measurement model
 function mapMeasurments(response : Response): Measurements[]{
     return response.json().map(toMeasurment)
 }

@@ -11,7 +11,7 @@ export class DataConsumerPageComponent implements OnInit   {
   constructor( private _dataservice : DataService,
                private _router : Router){}
   ngOnInit() {
-    this._dataservice.getStats('levelStats','no','2013-10-20','2013-10-25')
+    this._dataservice.getNetworkTypes()
       .subscribe(
           data => {
             this.measurements= data;
