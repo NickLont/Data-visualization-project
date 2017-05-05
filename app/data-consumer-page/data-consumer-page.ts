@@ -20,7 +20,7 @@ export class DataConsumerPageComponent implements OnInit   {
           error=> {
               console.log(JSON.stringify(error));
               if(error==='Unauthorized'){
-                  console.log('aunauthorized and redirecting');
+                  console.log('Unauthorized and redirecting');
                   this._router.navigate(['/login']);
               }
           }

@@ -14,6 +14,9 @@ import { LoginComponent } from './login/login.component';
 import {BarChartComponent} from "./bar-chart/bar-chart.component";
 import {StatBarChartsComponent} from "./stat-barcharts/stat-barcharts.component";
 import { NetworkStatsComponent } from "./networkStats/networkStats.component";
+import {OSStatsComponent} from "./osStats/osStats.component";
+import {VendorStatsComponent} from "./vendorStats/vendorStats.component";
+
 
 import {ChartsModule} from 'ng2-charts';
 
@@ -22,7 +25,6 @@ import { AuthenticationService} from './_services/authentication.service';
 import { AuthGuard } from './_guards/auth.guard';
 import {NavBarService} from './_services/navBarService.service';
 import { MyDatePickerModule } from 'mydatepicker';
-
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { MyDatePickerModule } from 'mydatepicker';
         LoginComponent,
         BarChartComponent,
         StatBarChartsComponent,
-        NetworkStatsComponent
+        NetworkStatsComponent,
+        OSStatsComponent,
+        VendorStatsComponent
     ],
     providers: [
         DataService,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {} from '@angular/router';
+import {Http} from '@angular/http';
+
 
 import { AuthenticationService } from '../_services/authentication.service';
 import {Router} from "@angular/router";
@@ -16,7 +18,9 @@ export class LoginComponent implements OnInit   {
     constructor(
         private _router : Router,
         private _authenticationService : AuthenticationService,
-        private _navBarService : NavBarService){}
+        private _navBarService : NavBarService,
+        private _http : Http
+    ){}
     ngOnInit(){
         //reset login status
         this._authenticationService.logout();
@@ -31,7 +35,7 @@ export class LoginComponent implements OnInit   {
                 if(result === true){
                     console.log("login succesful");
                     this._navBarService.setUsername(this.model.username);
-                    this._router.navigate(['/']);
+                    this._router.navigate(['/home']);
                 }
                 else {
                     this.error = 'Username or password is incorrect';
