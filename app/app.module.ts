@@ -24,7 +24,8 @@ import {DataService} from "./_services/data.service";
 import { AuthenticationService} from './_services/authentication.service';
 import { AuthGuard } from './_guards/auth.guard';
 import {NavBarService} from './_services/navBarService.service';
-import { MyDatePickerModule } from 'mydatepicker';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
+
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         FormsModule,
         NgbModule.forRoot(),
         ChartsModule,
-        MyDatePickerModule
+        MyDateRangePickerModule
     ],
     declarations: [
         AppComponent,
