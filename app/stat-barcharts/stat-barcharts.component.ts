@@ -46,7 +46,7 @@ export class StatBarChartsComponent implements  OnInit{
                 // this.model.startDate={ date: { year: 2018, month: 10, day: 9 } };
                 for(let r of res){
                     this.barChartLabels.push(r.operatorname)
-                    this.barChartData[0].data.push(r.avg);
+                    this.barChartData[0].data.push(r.avg.toF);
                     this.barChartData[1].data.push(r.min);
                     this.barChartData[2].data.push(r.max);
 

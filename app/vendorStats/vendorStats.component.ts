@@ -32,7 +32,8 @@ export class VendorStatsComponent implements  OnInit {
 
     public barChartLabels:string[] = [];
     public barChartType:string = 'bar';
-    public barChartLegend:boolean = true;
+    public barChartLegend:boolean = false;
+    public barChartColors:any[]=[{backgroundColor:['#97BBCD','#FDB45C','#46BFBD']}];
 
     public barChartData:any[] = [
         {data: [], label: ''},

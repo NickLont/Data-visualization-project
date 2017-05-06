@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit   {
                     console.log("login succesful");
                     this._navBarService.setUsername(this.model.username);
                     this._router.navigate(['/home']);
+                    location.reload();
                 }
                 else {
                     this.error = 'Username or password is incorrect';
