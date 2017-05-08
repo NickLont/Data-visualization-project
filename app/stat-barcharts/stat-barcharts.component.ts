@@ -50,7 +50,7 @@ export class StatBarChartsComponent implements  OnInit{
 
                 for(let r of res){
                     this.barChartLabels.push(r.operatorname)
-                    this.barChartData[0].data.push(r.avg);
+                    this.barChartData[0].data.push(r.avg.toFixed(2));
                     this.barChartData[1].data.push(r.min);
                     this.barChartData[2].data.push(r.max);
 
@@ -111,7 +111,7 @@ export class StatBarChartsComponent implements  OnInit{
                     }
                     for(let r of res){
                         this.barChartLabels.push(r.operatorname)
-                        this.barChartData[0].data.push(r.avg);
+                        this.barChartData[0].data.push(r.avg.toFixed(2));
                         this.barChartData[1].data.push(r.min);
                         this.barChartData[2].data.push(r.max);
                     }
@@ -128,7 +128,7 @@ export class StatBarChartsComponent implements  OnInit{
                     }
                     for(let r of res){
                         this.barChartLabels.push(r.operatorname)
-                        this.barChartData[0].data.push(r.avg);
+                        this.barChartData[0].data.push(r.avg.toFixed(2));
                         this.barChartData[1].data.push(r.min);
                         this.barChartData[2].data.push(r.max);
                     }

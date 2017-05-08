@@ -40,6 +40,25 @@ export class NetworkStatsComponent implements  OnInit {
     public pieChartLabels:string[] = [];
     public pieChartData:number[] = [];
     public pieChartType:string = 'pie';
+    public pieChartOptions:any = {
+        tooltips: {
+            callbacks: {
+                label: function(tooltipItem:any, data:any) {
+                    let value = data.datasets[0].data[tooltipItem.index];
+                    let label = data.labels[tooltipItem.index];
+                    let allData = data.datasets[tooltipItem.datasetIndex].data;
+                    let total = 0;
+                    for (let i in allData) {
+                        total += allData[i];
+                    }
+
+                    let percentage = Math.round(value / total * 100);
+                    return label + ' ' + percentage + '%';
+                }
+            }
+        }
+    };
+
 
     // events
     public chartClicked(e:any):void {
