@@ -1,0 +1,12 @@
+#provCont{
+    margin-bottom: 40px;
+    min-height: calc(100vh - 100px);
+    vertical-align: middle;
+    display: table-cell;
+}
+#provCont.container div.row div.col-md-6 H1{
+    text-align: center;
+}
+#provCont.container div.row{
+    margin-top: 10vh;
+}

@@ -5,7 +5,7 @@ import {DataConsumerPageComponent} from "./data-consumer-page/data-consumer-page
 import { LoginComponent } from './login/login.component';
 
 import { AuthGuard } from './_guards/auth.guard';
-import {BarChartComponent} from "./bar-chart/bar-chart.component";
+import {ProvidersComponent} from "./providers/providers.component";
 import {StatBarChartsComponent} from "./stat-barcharts/stat-barcharts.component";
 import {NetworkStatsComponent} from "./networkStats/networkStats.component";
 import {OSStatsComponent} from "./osStats/osStats.component";
@@ -15,7 +15,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'dataconsumer', component: DataConsumerPageComponent, canActivate: [AuthGuard]},
-  {path: 'barchart', component: BarChartComponent, canActivate: [AuthGuard]},
+  {path: 'providers', component: ProvidersComponent, canActivate: [AuthGuard]},
   {path: 'stat-barcharts', component: StatBarChartsComponent, canActivate: [AuthGuard]},
   {path: 'networks', component: NetworkStatsComponent, canActivate: [AuthGuard]},
   {path: 'osStats', component: OSStatsComponent, canActivate: [AuthGuard]},

@@ -1,0 +1,44 @@
+<div class="container" id="provCont" *ngIf="dataReady" >
+    <div class="row">
+        <div class="col-md-6">
+            <div style="display: block; height: 70%; width: 70%" class="center-block">
+                <canvas baseChart
+                        [data]="pieChartData"
+                        [labels]="pieChartLabels"
+                        [chartType]="pieChartType"
+                        [colors]="pieChartColors"
+                        [options]="pieChartOptions"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <H1 >Mobile Network Operators</H1>
+            <div class="info">
+                <p>
+                    This is a list of distinct mobile phone network and satellite phone network operators on our measurements.                </p>
+            </div>
+
+            <div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Operator</th>
+                        <th>Number</th>
+                        <th>Percentage</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let o of operators; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{o.operatorname}}</td>
+                        <td>{{o.value}}</td>
+                        <td>{{((o.value/total)*100).toFixed(1)}}%</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

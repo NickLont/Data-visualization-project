@@ -1,0 +1,24 @@
+#statsContainer{
+    min-height: calc(100vh - 80px);
+    /*vertical-align: middle;*/
+    /*display: table-cell;*/
+}
+#statsContainer.container div.row{
+    margin-top: 2vh;
+}
+#genFromgroup{
+    margin-left: 50px;
+}
+#upperInline{
+    margin-bottom: 15px;
+}
+
+#statsContainer div.row{
+    margin-bottom: 40px;
+}
+#bottomInline{
+    margin-bottom: 5px;
+}
+#upperInline{
+    margin-top: 20px;
+}

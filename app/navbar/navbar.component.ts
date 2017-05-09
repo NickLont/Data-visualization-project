@@ -10,6 +10,11 @@ import {NavBarService} from "../_services/navBarService.service";
 
 export class NavbarComponent implements OnInit{
     public currentUser: string;
+    isCollapsed: boolean = true;
+
+    toggleCollapse(): void {
+        this.isCollapsed = !this.isCollapsed;
+    }
 
     constructor(private _navBarService : NavBarService){
         this._navBarService.navUsername$.subscribe(currentUser=> this.currentUser = currentUser);

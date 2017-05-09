@@ -8,10 +8,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent }  from './app.component';
 import {routing} from "./app.routing";
 import {NavbarComponent} from "./navbar/navbar.component";
+import {FooterComponent} from "./footer/footer.component";
 import {HomeComponent} from "./home/home.component";
 import {DataConsumerPageComponent} from "./data-consumer-page/data-consumer-page";
 import { LoginComponent } from './login/login.component';
-import {BarChartComponent} from "./bar-chart/bar-chart.component";
+import { ProvidersComponent } from "./providers/providers.component";
 import {StatBarChartsComponent} from "./stat-barcharts/stat-barcharts.component";
 import { NetworkStatsComponent } from "./networkStats/networkStats.component";
 import {OSStatsComponent} from "./osStats/osStats.component";
@@ -36,15 +37,16 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
         FormsModule,
         NgbModule.forRoot(),
         ChartsModule,
-        MyDateRangePickerModule
+        MyDateRangePickerModule,
     ],
     declarations: [
         AppComponent,
         NavbarComponent,
+        FooterComponent,
         HomeComponent,
         DataConsumerPageComponent,
         LoginComponent,
-        BarChartComponent,
+        ProvidersComponent,
         StatBarChartsComponent,
         NetworkStatsComponent,
         OSStatsComponent,

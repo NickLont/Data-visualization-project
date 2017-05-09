@@ -1,0 +1,13 @@
+.footer{
+    height: 40px;
+    background-color: #222222;
+    position:fixed;
+    width:100%;
+    bottom:0px;
+    /*border-top: 1px solid #e7e7e7;*/
+    color: #aaabab;
+}
+
+.footer p{
+    margin-top: 8px;
+}

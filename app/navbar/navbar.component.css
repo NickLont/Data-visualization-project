@@ -1,3 +1,11 @@
 #mainNavbar{
   margin-bottom: 0 !important;
+  background-color: #222222;
+}
+.nav.navbar-nav li a{
+  color: #aaabab;
+}
+
+.navbar-header a{
+  color: #aaabab;
 }

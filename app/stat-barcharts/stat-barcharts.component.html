@@ -1,43 +1,84 @@
-<div *ngIf="dataReady">
-    <div style="display: block">
-        <canvas baseChart
-                [datasets]="barChartData"
-                [labels]="barChartLabels"
-                [options]="barChartOptions"
-                [legend]="barChartLegend"
-                [chartType]="barChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    </div>
-    <!--<button (click)="randomize()">Update</button>-->
-    <div class="container">
-        <h2>Form title</h2>
-        <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
-            <div class="form-group">
-                <label for="type">Measurement Type: </label>
-                <select class="form-control" id="type" [(ngModel)]="model.type" name="type" >
-                    <option *ngFor="let measurementType of measurementTypes"
-                            [value]="measurementType.value">{{measurementType.name}}</option>
-                </select>
+<div class="container" *ngIf="dataReady" id="statsContainer">
+    <div class="row">
+        <div class="col-md-7">
+            <div style="display: block; height: 100%; width: 100%">
+                <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
             </div>
-            <div class="form-group">
-                <label for="gen">Generation: </label>
-                <select class="form-control" id="gen" [(ngModel)]="model.gen" name="gen" >
-                    <option *ngFor="let gen of gens"
-                            [value]="gen.value">{{gen.name}}</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="daterange">Date Range: </label>
-                <div id='daterange'>
-                    <my-date-range-picker  name="mydaterange" [options]="myDateRangePickerOptions"
-                                           [(ngModel)]="model.dates" required>
-                    </my-date-range-picker>
+            <!--<button (click)="randomize()">Update</button>-->
+            <!--<h4>Change Parameters</h4>-->
+            <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+                <div class="form-inline" id="upperInline">
+                    <div class="form-group">
+                        <label for="type">Measurement Type </label>
+                        <div id="type">
+                            <select class="form-control"  [(ngModel)]="model.type" name="type" >
+                                <option *ngFor="let measurementType of measurementTypes"
+                                        [value]="measurementType.value">{{measurementType.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="genFromgroup">
+                        <label for="gen">Generation </label>
+                        <div id="gen">
+                            <select class="form-control"  [(ngModel)]="model.gen" name="gen" >
+                                <option *ngFor="let gen of gens"
+                                        [value]="gen.value">{{gen.name}}</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="form-inline" id="bottomInline">
+                    <div class="form-group">
+                        <label for="daterange">Date Range </label>
+                        <div id='daterange'>
+                            <my-date-range-picker  name="mydaterange" [options]="myDateRangePickerOptions"
+                                                   [(ngModel)]="model.dates" required>
+                            </my-date-range-picker>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-5" id="tableCol">
+            <H1>Level, Uplink and Downlink statistics</H1>
+            <div class="info">
+                <br>
+                <p>
+                    Statistics about minimun, maximum and average Level, Uplink and Downlink measurements
+                </p>
             </div>
 
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+            <div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Operator</th>
+                        <th>Minimum ({{unit}})</th>
+                        <th>Maximum ({{unit}})</th>
+                        <th>Average ({{unit}})</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let s of statistics; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{s.operatorname}}</td>
+                        <td>{{s.min}}</td>
+                        <td>{{s.max}}</td>
+                        <td>{{s.avg.toFixed(2)}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
