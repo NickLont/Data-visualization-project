@@ -4,11 +4,14 @@ import {Router} from "@angular/router";
 
 @Component({
     selector: 'networkStats',
+    styleUrls: ['./networkStats.component.css'],
     templateUrl: './networkStats.component.html'
 })
 
 export class NetworkStatsComponent implements  OnInit {
     public dataReady : boolean = false;
+    public networks : any;
+    public total : number = 0;
 
     constructor( private _dataservice : DataService,
                  private _router : Router
@@ -16,14 +19,17 @@ export class NetworkStatsComponent implements  OnInit {
     ngOnInit(){
         this._dataservice.getNetworkTypes()
             .subscribe(res => {
+                this.networks = res;
                 for(let r of res){
                     if(!r.key.indexOf("_")){
                         this.pieChartLabels.push("Unknown");
                         this.pieChartData.push(r.value);
+                        this.total+=r.value;
                     }
                     else{
                         this.pieChartLabels.push(r.key);
                         this.pieChartData.push(r.value);
+                        this.total+=r.value;
                     }
 
                 }
@@ -31,7 +37,7 @@ export class NetworkStatsComponent implements  OnInit {
 
             },err=>{
                 if(err==='Unauthorized'){
-                    console.log('aunauthorized and redirecting');
+                    console.log('unauthorized and redirecting');
                     this._router.navigate(['/login']);
                 }
             } );
@@ -41,6 +47,10 @@ export class NetworkStatsComponent implements  OnInit {
     public pieChartData:number[] = [];
     public pieChartType:string = 'pie';
     public pieChartOptions:any = {
+        legend: {
+            display: true,
+            position: 'top'
+        },
         tooltips: {
             callbacks: {
                 label: function(tooltipItem:any, data:any) {

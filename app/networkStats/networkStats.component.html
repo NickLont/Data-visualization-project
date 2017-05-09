@@ -1,11 +1,44 @@
-<div class="container" *ngIf="dataReady">
-    <div style="display: block; height: 50%; width: 50%">
-        <canvas baseChart
-                [data]="pieChartData"
-                [labels]="pieChartLabels"
-                [chartType]="pieChartType"
-                [options]="pieChartOptions"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+<div class="container" *ngIf="dataReady" id="netwContainer">
+    <div class="row">
+        <div class="col-md-6">
+            <div style="display: block; height: 70%; width: 70% " class="center-block">
+                <canvas baseChart
+                        [data]="pieChartData"
+                        [labels]="pieChartLabels"
+                        [chartType]="pieChartType"
+                        [options]="pieChartOptions"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <H1 >Generation of Network Technologies</H1>
+            <div class="info">
+                <p>
+                    A list of distinct "generations" of the underlying wireless network technology in our measurements.
+                </p>
+            </div>
+
+            <div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Network Type</th>
+                        <th>Number</th>
+                        <th>Percentage</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let n of networks; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{n.key}}</td>
+                        <td>{{n.value}}</td>
+                        <td>{{((n.value/total)*100).toFixed(1)}}%</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,13 +1,46 @@
-<div *ngIf="dataReady">
-    <div style="display: block">
-        <canvas baseChart
-                [datasets]="barChartData"
-                [labels]="barChartLabels"
-                [options]="barChartOptions"
-                [legend]="barChartLegend"
-                [chartType]="barChartType"
-                [colors]="barChartColors"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+<div *ngIf="dataReady" class="container" id="vendorContainer">
+    <div class="row">
+        <div class="col-md-6" id="leftColumn">
+            <div style="display: block;" class="center-block">
+                <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType"
+                        [colors]="barChartColors"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6" id="rightColumn">
+            <H1 >Device Manufacturers</H1>
+            <div class="info">
+                <p>
+                    A list of distinct manufacturers of the devices in our measurements.
+                </p>
+            </div>
+
+            <div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Network Type</th>
+                        <th>Number</th>
+                        <th>Percentage</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let v of vendors; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{v.key}}</td>
+                        <td>{{v.value}}</td>
+                        <td>{{((v.value/total)*100).toFixed(1)}}%</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

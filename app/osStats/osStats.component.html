@@ -1,10 +1,44 @@
-<div *ngIf="dataReady">
-    <div style="display: block; height: 50%; width: 50%">
-        <canvas baseChart
-                [data]="doughnutChartData"
-                [labels]="doughnutChartLabels"
-                [chartType]="doughnutChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+<div *ngIf="dataReady" class="container" id="osContainer">
+    <div class="row">
+        <div class="col-md-6">
+            <div style="display: block; height: 70%; width: 70%" class="center-block">
+                <canvas baseChart
+                        [data]="doughnutChartData"
+                        [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType"
+                        [options]="doughnutChartOptions"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <H1 >Mobile Operating System</H1>
+            <div class="info">
+                <p>
+                    A list of Operating Systems of the devices taking part in our measurements
+                </p>
+            </div>
+
+            <div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Operating System</th>
+                        <th>Number</th>
+                        <th>Percentage</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let o of osystems; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{o.key}}</td>
+                        <td>{{o.value}}</td>
+                        <td>{{((o.value/total)*100).toFixed(1)}}%</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

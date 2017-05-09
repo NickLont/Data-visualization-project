@@ -1,0 +1,18 @@
+#vendorContainer{
+    min-height: calc(100vh - 40px);
+    /*vertical-align: middle;*/
+    /*display: table-cell;*/
+}
+#leftColumn{
+    margin-top: 10vh;
+}
+#rightColumn{
+    margin-top: 5vh;
+}
+#rightColumn{
+    margin-bottom: 50px;
+}
+
+#rightColumn H1, p {
+    text-align: center;
+}

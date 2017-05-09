@@ -4,11 +4,14 @@ import {Router} from "@angular/router";
 
 @Component({
     selector: 'vendorStats',
+    styleUrls: ['./vendorStats.component.css'],
     templateUrl: './vendorStats.component.html'
 })
 
 export class VendorStatsComponent implements  OnInit {
     public dataReady : boolean = false;
+    public vendors : any;
+    public total : number = 0;
 
     constructor( private _dataservice : DataService,
                  private _router : Router
@@ -16,9 +19,11 @@ export class VendorStatsComponent implements  OnInit {
     ngOnInit(){
         this._dataservice.getVendors()
             .subscribe(res => {
+                this.vendors = res;
                 for(let r of res){
                     this.barChartLabels.push(r.key);
                     this.barChartData[0].data.push(r.value);
+                    this.total+= r.value;
                 }
                 this.dataReady = true;
 
@@ -34,6 +39,21 @@ export class VendorStatsComponent implements  OnInit {
     public barChartType:string = 'bar';
     public barChartLegend:boolean = false;
     public barChartColors:any[]=[{backgroundColor:['#97BBCD','#FDB45C','#46BFBD']}];
+    public barChartOptions:any = {
+        scaleShowVerticalLines: false,
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: '# of Devices'
+                }
+            }]
+        }
+    };
 
     public barChartData:any[] = [
         {data: [], label: ''},
