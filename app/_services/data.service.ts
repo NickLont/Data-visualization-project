@@ -87,6 +87,13 @@ export class DataService {
             .catch(this.handleError);
     }
 
+    getPoints(operator:string){
+        return this._http
+            .get("http://test.hua.gr:8080/geoserver/hua_meas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=hua_meas:SQLView_Param&viewparams=operator:"+operator+"&outputFormat=application%2Fjson")
+            .map((res:Response)=>res.json())
+            .catch(this.handleError);
+    }
+
 
     private handleError(error: Response | any) {
         let errMsg: string;

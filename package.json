@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "~4.1.2",
     "@angular/router": "~4.1.2",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.26",
+    "@ngui/map": "^0.18.1",
+    "@types/googlemaps": "^3.26.11",
     "angular-in-memory-web-api": "~0.3.2",
     "bootstrap": "^3.3.7",
     "chart.js": "^2.4.0",

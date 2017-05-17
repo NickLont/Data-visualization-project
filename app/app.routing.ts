@@ -10,6 +10,7 @@ import {StatBarChartsComponent} from "./stat-barcharts/stat-barcharts.component"
 import {NetworkStatsComponent} from "./networkStats/networkStats.component";
 import {OSStatsComponent} from "./osStats/osStats.component";
 import {VendorStatsComponent} from "./vendorStats/vendorStats.component";
+import {MapsComponent} from './maps/maps.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   {path: 'networks', component: NetworkStatsComponent, canActivate: [AuthGuard]},
   {path: 'osStats', component: OSStatsComponent, canActivate: [AuthGuard]},
   {path: 'vendorStats', component: VendorStatsComponent, canActivate: [AuthGuard]},
+  {path: 'maps', component: MapsComponent, canActivate: [AuthGuard]},
 
   { path: '**', redirectTo: 'home', pathMatch:'full' }
   ];

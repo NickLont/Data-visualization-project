@@ -1,0 +1,13 @@
+    <h1>Heatmap Layer</h1>
+    <ngui-map zoom="13" center="37.782551, -122.445368">
+        <div id="floating-panel">
+            <button (click)="toggleHeatmap()">Toggle Heatmap</button>
+            <button (click)="changeGradient()">Change gradient</button>
+            <button (click)="changeRadius()">Change radius</button>
+            <button (click)="changeOpacity()">Change opacity</button>
+        </div>
+        <heatmap-layer [data]="points"></heatmap-layer>
+    </ngui-map>
+    <button (click)="showRandomMarkers()">Show Random Markers</button>
+    <br/>
+    <button (click)="addMarker()">Add Marker</button>

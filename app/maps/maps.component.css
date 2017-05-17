@@ -1,0 +1,13 @@
+#floating-panel {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #999;
+    font-family: 'Roboto','sans-serif';
+    left: 25%;
+    line-height: 30px;
+    padding: 5px;
+    padding-left: 10px;
+    text-align: center;
+    top: 60px;
+    z-index: 10;
+}

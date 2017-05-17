@@ -17,15 +17,17 @@ import {StatBarChartsComponent} from "./stat-barcharts/stat-barcharts.component"
 import { NetworkStatsComponent } from "./networkStats/networkStats.component";
 import {OSStatsComponent} from "./osStats/osStats.component";
 import {VendorStatsComponent} from "./vendorStats/vendorStats.component";
+import { MapsComponent } from './maps/maps.component';
 
 
-import {ChartsModule} from 'ng2-charts';
+import {ChartsModule} from 'ng2-charts' ;
 
 import {DataService} from "./_services/data.service";
 import { AuthenticationService} from './_services/authentication.service';
 import { AuthGuard } from './_guards/auth.guard';
 import {NavBarService} from './_services/navBarService.service';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
+import { NguiMapModule } from '@ngui/map';
 
 
 
@@ -37,7 +39,8 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
         FormsModule,
         NgbModule.forRoot(),
         ChartsModule,
-        MyDateRangePickerModule
+        MyDateRangePickerModule,
+        NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyDebjxXSei-aBXW-N50NVmO48Q_FMxrwTA&libraries=visualization'})
     ],
     declarations: [
         AppComponent,
@@ -50,7 +53,8 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
         StatBarChartsComponent,
         NetworkStatsComponent,
         OSStatsComponent,
-        VendorStatsComponent
+        VendorStatsComponent,
+        MapsComponent
     ],
     providers: [
         DataService,
