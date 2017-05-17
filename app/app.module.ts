@@ -37,7 +37,7 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
         FormsModule,
         NgbModule.forRoot(),
         ChartsModule,
-        MyDateRangePickerModule,
+        MyDateRangePickerModule
     ],
     declarations: [
         AppComponent,

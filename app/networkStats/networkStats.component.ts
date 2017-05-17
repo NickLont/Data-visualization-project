@@ -21,12 +21,15 @@ export class NetworkStatsComponent implements  OnInit {
             .subscribe(res => {
                 this.networks = res;
                 for(let r of res){
-                    if(!r.key.indexOf("_")){
+                    console.log('to key einai: '+r.key);
+                    console.log('to index of einai: '+r.key.indexOf("_"));
+                    if(r.key.indexOf("_")>-1){
+                        console.log('mpika edw');
                         this.pieChartLabels.push("Unknown");
                         this.pieChartData.push(r.value);
                         this.total+=r.value;
                     }
-                    else{
+                    else if(r.key.indexOf("_")<0){
                         this.pieChartLabels.push(r.key);
                         this.pieChartData.push(r.value);
                         this.total+=r.value;

@@ -10,3 +10,5 @@ import 'rxjs';
 import 'ng2-charts/ng2-charts';
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
+
+// SCSS Imports
