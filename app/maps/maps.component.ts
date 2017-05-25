@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {HeatmapLayer} from '@ngui/map';
+import {DataService} from "../_services/data.service";
+import {Router} from "@angular/router";
+
+
 
 import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { NguiMapComponent } from '@ngui/map';
@@ -15,19 +19,37 @@ export class MapsComponent implements OnInit{
     @ViewChild(HeatmapLayer) heatmaplayer : HeatmapLayer;
     heatmap: google.maps.visualization.HeatmapLayer;
     map: google.maps.Map;
-    points = [
-        new google.maps.LatLng(37.782551, -122.445368),
-        new google.maps.LatLng(37.782745, -122.444586),
-        new google.maps.LatLng(37.782842, -122.443688)
+    points : any= [
+        {location: new google.maps.LatLng(2655058.9110122095, 4584981.900203452), weight: 1},
+        {location: new google.maps.LatLng(2669920.0630331114, 4583920.47411733), weight: 10},
     ];
 
     // heatmapData : any = [
     //     // WeightedLocation objects
-    //     {location: new google.maps.LatLng(37.782, -122.447), weight: 1},
-    //     {location: new google.maps.LatLng(37.782, -122.443), weight: 2},
+    //     {location: new google.maps.LatLng(23.8508, 38.039319999999975), weight: 1},
+    //     {location: new google.maps.LatLng(23.9843, 38.03180999999995), weight: 1},
     // ];
+    constructor( private _dataservice : DataService,
+                 private _router : Router
+    ){}
+
 
     ngOnInit() {
+        // this._dataservice.getPoints("wind").subscribe(res=>{
+        //     for(let r of res.features){
+        //         let splitted = r.geometry.coordinates.toString().split(",",2);
+        //         let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
+        //         this.points.push({location: new google.maps.LatLng(splitted[0], splitted[1]), weight: weight})
+        //     }
+        //     console.log("to points 0 einai: "+(JSON.stringify(this.points[0])))
+        //     console.log("to points 1 einai: "+(JSON.stringify(this.points[1])))
+        // },err=>{
+        //     if(err==='Unauthorized'){
+        //         console.log('unauthorized and redirecting');
+        //         this._router.navigate(['/login']);
+        //     }
+        // } );
+
         this.heatmaplayer['initialized$'].subscribe((heatmap:any) => {
             this.heatmap = heatmap;
             this.map = this.heatmap.getMap();
