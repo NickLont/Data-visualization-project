@@ -20,8 +20,8 @@ export class MapsComponent implements OnInit{
     heatmap: google.maps.visualization.HeatmapLayer;
     map: google.maps.Map;
     points : any= [
-        {location: new google.maps.LatLng(2655058.9110122095, 4584981.900203452), weight: 1},
-        {location: new google.maps.LatLng(2669920.0630331114, 4583920.47411733), weight: 10},
+        // {location: new google.maps.LatLng(38.039319999999975, 23.8508), weight: 1},
+        // {location: new google.maps.LatLng(38.03180999999995, 23.9843), weight: 10},
     ];
 
     // heatmapData : any = [
@@ -35,25 +35,34 @@ export class MapsComponent implements OnInit{
 
 
     ngOnInit() {
-        // this._dataservice.getPoints("wind").subscribe(res=>{
-        //     for(let r of res.features){
-        //         let splitted = r.geometry.coordinates.toString().split(",",2);
-        //         let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
-        //         this.points.push({location: new google.maps.LatLng(splitted[0], splitted[1]), weight: weight})
-        //     }
-        //     console.log("to points 0 einai: "+(JSON.stringify(this.points[0])))
-        //     console.log("to points 1 einai: "+(JSON.stringify(this.points[1])))
-        // },err=>{
-        //     if(err==='Unauthorized'){
-        //         console.log('unauthorized and redirecting');
-        //         this._router.navigate(['/login']);
-        //     }
-        // } );
+        this._dataservice.getPoints("wind").subscribe(res=>{
+            for(let r of res.features){
+                let splitted = r.geometry.coordinates.toString().split(",",2);
+                // let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
+                let weight = r.properties.dl_bitrate;
+                this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
+            }
+            this.heatmap.setMap(this.map);
+            // this.heatmap.set('maxIntensity', 10);
+            // this.heatmap.set('dissipating', false);
+            console.log("to points 0 einai: "+(JSON.stringify(this.points[0])))
+            console.log("to points 1 einai: "+(JSON.stringify(this.points[1])))
+            console.log('to opacity einai: '+this.heatmap.get('opacity'))
+        },err=>{
+            if(err==='Unauthorized'){
+                console.log('unauthorized and redirecting');
+                this._router.navigate(['/login']);
+            }
+        } );
 
         this.heatmaplayer['initialized$'].subscribe((heatmap:any) => {
+            heatmap.set('radius',5);
             this.heatmap = heatmap;
             this.map = this.heatmap.getMap();
+
         });
+        // this.heatmap.set('radius',1)
+
     }
 
     toggleHeatmap() {
@@ -78,13 +87,20 @@ export class MapsComponent implements OnInit{
         ];
         this.heatmap.set('gradient', this.heatmap.get('gradient') ? null : gradient);
     }
-    // changeRadius() {
-    //     this.heatmap.set('radius', this.heatmap.get('radius') ? null : 20);
-    // }
-    //
-    // changeOpacity() {
-    //     this.heatmap.set('opacity', this.heatmap.get('opacity') ? null : 0.2);
-    // }
+    changeRadius() {
+        this.heatmap.set('radius', this.heatmap.get('radius') ? null : 5);
+    }
+
+    changeOpacity() {
+        this.heatmap.set('opacity', this.heatmap.get('opacity') ? null : 0.2);
+    }
+    onZoomChange(event : any){
+        console.log(event);
+    }
+
+    onMapClick(event : any) {
+        console.log(event);
+    }
     //
     // loadRandomPoints() {
     //     this.points = [];

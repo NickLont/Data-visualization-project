@@ -1,6 +1,9 @@
     <h1>Heatmap Layer</h1>
-    <ngui-map zoom="13" center="2655058.9110122095, 4584981.900203452">
-    <!--<ngui-map zoom="13" center="Athens, Greece">-->
+    <!--<ngui-map zoom="13" center="38.039319999999975, 23.8508">-->
+    <ngui-map zoom="13"
+              center="Athens, Greece"
+              (zoomChange)="onZoomChange($event)"
+              (mapClick)="onMapClick($event)">
         <div id="floating-panel">
             <button (click)="toggleHeatmap()">Toggle Heatmap</button>
             <button (click)="changeGradient()">Change gradient</button>
