@@ -11,3 +11,12 @@
     top: 60px;
     z-index: 10;
 }
+ngui-map{
+    height: 360px;
+}
+.btn{
+    margin-top: 10px;
+}
+form{
+    margin-top: 5px;
+}

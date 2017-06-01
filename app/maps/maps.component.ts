@@ -16,6 +16,20 @@ declare var google: any;
     styleUrls: ['./maps.component.css']
 })
 export class MapsComponent implements OnInit{
+
+    model: any = [];
+    //Select elements values
+    measurementTypes=[
+        {name:'Uplink', value:'uplink'},
+        {name:'Downlink', value:'downlink'}
+    ];
+    providers=[
+        {name:'Vodafone', value:'vodafone'},
+        {name:'Cosmote', value:'cosmote'},
+        {name:'Wind', value:'wind'}
+    ];
+
+
     @ViewChild(HeatmapLayer) heatmaplayer : HeatmapLayer;
     heatmap: google.maps.visualization.HeatmapLayer;
     map: google.maps.Map;
@@ -24,21 +38,22 @@ export class MapsComponent implements OnInit{
         // {location: new google.maps.LatLng(38.03180999999995, 23.9843), weight: 10},
     ];
 
-    // heatmapData : any = [
-    //     // WeightedLocation objects
-    //     {location: new google.maps.LatLng(23.8508, 38.039319999999975), weight: 1},
-    //     {location: new google.maps.LatLng(23.9843, 38.03180999999995), weight: 1},
-    // ];
     constructor( private _dataservice : DataService,
                  private _router : Router
     ){}
 
 
     ngOnInit() {
-        this._dataservice.getPoints("wind").subscribe(res=>{
+        //Initialize form values
+        this.model.type='uplink';
+        this.model.provider='vodafone';
+
+        this._dataservice.getUplinkPoints("vodafone").subscribe(res=>{
             for(let r of res.features){
+                // Get lat and lon from Point
                 let splitted = r.geometry.coordinates.toString().split(",",2);
                 // let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
+                //Get the weight for the measurement
                 let weight = r.properties.dl_bitrate;
                 this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
             }
@@ -101,7 +116,52 @@ export class MapsComponent implements OnInit{
     onMapClick(event : any) {
         console.log(event);
     }
-    //
+
+    onSubmit(){
+        console.log('to type einai: '+this.model.type+'kai o provider einai: '+this.model.provider);
+        this.points=[];
+        if(this.model.type =='uplink'){
+            this._dataservice.getUplinkPoints(this.model.provider).subscribe(res=>{
+                    for(let r of res.features){
+                        // Get lat and lon from Point
+                        let splitted = r.geometry.coordinates.toString().split(",",2);
+                        // let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
+                        //Get the weight for the measurement
+                        let weight = r.properties.dl_bitrate;
+                        this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
+                    }
+                    this.heatmap.setMap(this.map);
+
+                },err=>{
+                    if(err==='Unauthorized'){
+                        console.log('unauthorized and redirecting');
+                        this._router.navigate(['/login']);
+                    }
+                } );
+        }
+        else if(this.model.type =='downlink'){
+            this._dataservice.getDownlinkPoints(this.model.provider).subscribe(res=>{
+                for(let r of res.features){
+                    // Get lat and lon from Point
+                    let splitted = r.geometry.coordinates.toString().split(",",2);
+                    // let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
+                    //Get the weight for the measurement
+                    let weight = r.properties.dl_bitrate;
+                    this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
+                }
+                this.heatmap.setMap(this.map);
+
+            },err=>{
+                if(err==='Unauthorized'){
+                    console.log('unauthorized and redirecting');
+                    this._router.navigate(['/login']);
+                }
+            } );
+
+        }
+    }
+
+        //
     // loadRandomPoints() {
     //     this.points = [];
     //
