@@ -28,6 +28,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import {NavBarService} from './_services/navBarService.service';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { NguiMapModule } from '@ngui/map';
+import {ButtonsModule} from 'ngx-bootstrap';
 
 
 
@@ -40,7 +41,8 @@ import { NguiMapModule } from '@ngui/map';
         NgbModule.forRoot(),
         ChartsModule,
         MyDateRangePickerModule,
-        NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyDebjxXSei-aBXW-N50NVmO48Q_FMxrwTA&libraries=visualization'})
+        NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyDebjxXSei-aBXW-N50NVmO48Q_FMxrwTA&libraries=visualization'}),
+        ButtonsModule.forRoot()
     ],
     declarations: [
         AppComponent,

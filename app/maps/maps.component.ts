@@ -4,10 +4,6 @@ import {DataService} from "../_services/data.service";
 import {Router} from "@angular/router";
 
 
-
-import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
-import { NguiMapComponent } from '@ngui/map';
-
 declare var google: any;
 
 
@@ -29,6 +25,7 @@ export class MapsComponent implements OnInit{
         {name:'Wind', value:'wind'}
     ];
 
+    legend = document.createElement('div');
 
     @ViewChild(HeatmapLayer) heatmaplayer : HeatmapLayer;
     heatmap: google.maps.visualization.HeatmapLayer;
@@ -52,9 +49,9 @@ export class MapsComponent implements OnInit{
             for(let r of res.features){
                 // Get lat and lon from Point
                 let splitted = r.geometry.coordinates.toString().split(",",2);
-                // let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
+                let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
                 //Get the weight for the measurement
-                let weight = r.properties.dl_bitrate;
+                // let weight = r.properties.dl_bitrate;
                 this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
             }
             this.heatmap.setMap(this.map);
@@ -75,6 +72,10 @@ export class MapsComponent implements OnInit{
             this.heatmap = heatmap;
             this.map = this.heatmap.getMap();
 
+            this.legend.id='legend';
+            this.legend.innerHTML='<h3>Test String</h3>';
+            this.map.controls[google.maps.ControlPosition.RIGHT_TOP].push(this.legend)
+
         });
         // this.heatmap.set('radius',1)
 
@@ -84,22 +85,46 @@ export class MapsComponent implements OnInit{
         this.heatmap.setMap(this.heatmap.getMap() ? null : this.map);
     }
     changeGradient() {
+        // let gradient = [
+        //     'rgba(255, 0, 0, 0)',
+        //     'rgba(255, 0, 0, 1)',
+        //     'rgba(191, 63, 0, 1)',
+        //     'rgba(127, 127, 0, 1)',
+        //     'rgba(63, 191, 0, 1)',
+        //     'rgba(0, 255, 0, 1)'
+        // ];
         let gradient = [
-            'rgba(0, 255, 255, 0)',
-            'rgba(0, 255, 255, 1)',
-            'rgba(0, 191, 255, 1)',
-            'rgba(0, 127, 255, 1)',
-            'rgba(0, 63, 255, 1)',
-            'rgba(0, 0, 255, 1)',
-            'rgba(0, 0, 223, 1)',
-            'rgba(0, 0, 191, 1)',
-            'rgba(0, 0, 159, 1)',
-            'rgba(0, 0, 127, 1)',
-            'rgba(63, 0, 91, 1)',
-            'rgba(127, 0, 63, 1)',
-            'rgba(191, 0, 31, 1)',
-            'rgba(255, 0, 0, 1)'
+            'rgba(255, 0, 0, 0)',
+            'rgba(255, 0, 0, 1)',
+            'rgba(233, 21, 0, 1)',
+            'rgba(212, 42, 0, 1)',
+            'rgba(191, 63, 0, 1)',
+            'rgba(170, 85, 0, 1)',
+            'rgba(148, 106, 0, 1)',
+            'rgba(127, 127, 0, 1)',
+            'rgba(106, 148, 0, 1)',
+            'rgba(85, 170, 0, 1)',
+            'rgba(63, 191, 0, 1)',
+            'rgba(42, 212, 0, 1)',
+            'rgba(21, 233, 0, 1)',
+            'rgba(0, 255, 0, 1)'
         ];
+        // let gradient = [
+        //     'rgba(0, 255, 255, 0)',
+        //     'rgba(0, 255, 255, 1)',
+        //     'rgba(0, 191, 255, 1)',
+        //     'rgba(0, 127, 255, 1)',
+        //     'rgba(0, 63, 255, 1)',
+        //     'rgba(0, 0, 255, 1)',
+        //     'rgba(0, 0, 223, 1)',
+        //     'rgba(0, 0, 191, 1)',
+        //     'rgba(0, 0, 159, 1)',
+        //     'rgba(0, 0, 127, 1)',
+        //     'rgba(63, 0, 91, 1)',
+        //     'rgba(127, 0, 63, 1)',
+        //     'rgba(191, 0, 31, 1)',
+        //     'rgba(255, 0, 0, 1)'
+        // ];
         this.heatmap.set('gradient', this.heatmap.get('gradient') ? null : gradient);
     }
     changeRadius() {

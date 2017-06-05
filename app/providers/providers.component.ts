@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 
 export class ProvidersComponent implements  OnInit{
 
+    public radioModel: string = '';
     public dataReady : boolean = false;
     public operators : any;
     public total : number = 0;
@@ -86,6 +87,35 @@ export class ProvidersComponent implements  OnInit{
 
     public chartHovered(e:any):void {
         console.log(e);
+    }
+
+    public radioChange(val:any):void{
+        console.log(val)
+        this._dataservice.getOperators(val)
+            .subscribe(res => {
+                this.operators = res;
+                this.pieChartLabels=[];
+                this.pieChartData=[];
+                this.total=0;
+
+                for(let r of res){
+                    // let clone = JSON.parse(JSON.stringify(this.barChartData));
+                    // let clone = JSON.parse(JSON.stringify(this.barChartData));
+                    // clone.push({data: [r.value], label: r.operatorname});
+                    // this.barChartData = clone;
+                    this.pieChartLabels.push(r.operatorname);
+                    this.pieChartData.push(r.value);
+                    this.total+=r.value;
+                }
+                console.log("to total einai: "+ this.total);
+                this.dataReady = true;
+                console.log('data ready to parse');
+            }, err=>{
+                if(err==='Unauthorized'){
+                    console.log('aunauthorized and redirecting');
+                    this._router.navigate(['/login']);
+                }
+            } )
     }
 
 

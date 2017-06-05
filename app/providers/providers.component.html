@@ -11,6 +11,17 @@
                         (chartHover)="chartHovered($event)"
                         (chartClick)="chartClicked($event)"></canvas>
             </div>
+            <div class="btn-group">
+                <label class="btn btn-primary" [(ngModel)]="radioModel"
+                       btnRadio=""
+                       (ngModelChange)="radioChange($event)">All</label>
+                <label class="btn btn-primary" [(ngModel)]="radioModel"
+                       btnRadio="2G"
+                       (ngModelChange)="radioChange($event)">2G</label>
+                <label class="btn btn-primary" [(ngModel)]="radioModel"
+                       btnRadio="3G"
+                       (ngModelChange)="radioChange($event)">3G</label>
+            </div>
         </div>
         <div class="col-md-6">
             <H1 >Mobile Network Operators</H1>

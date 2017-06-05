@@ -7,8 +7,8 @@ import { AuthenticationService} from './authentication.service';
 
 @Injectable()
 export class DataService {
-    private baseUrl : string = 'http://test.hua.gr:8080/HuaTester/api/';
-    // private baseUrl : string = 'http://localhost:8081/api/';
+    // private baseUrl : string = 'http://test.hua.gr:8080/HuaTester/api/';
+    private baseUrl : string = 'http://localhost:8081/api/';
     public headers : Headers;
 
     constructor(
@@ -29,7 +29,13 @@ export class DataService {
             .catch(this.handleError);
     }
 
-    getOperators(){
+    getOperators(networkType?: String){
+        if(networkType){
+            return this._http
+                .get(this.baseUrl+'measurement/all/'+networkType+'/', {headers : this.headers})
+                .map((res:Response)=>res.json())
+                .catch(this.handleError);
+        }
         return this._http
             .get(this.baseUrl+'measurement/all/', {headers : this.headers})
             .map((res:Response)=>res.json())
