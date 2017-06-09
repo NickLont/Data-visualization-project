@@ -99,10 +99,6 @@ export class ProvidersComponent implements  OnInit{
                 this.total=0;
 
                 for(let r of res){
-                    // let clone = JSON.parse(JSON.stringify(this.barChartData));
-                    // let clone = JSON.parse(JSON.stringify(this.barChartData));
-                    // clone.push({data: [r.value], label: r.operatorname});
-                    // this.barChartData = clone;
                     this.pieChartLabels.push(r.operatorname);
                     this.pieChartData.push(r.value);
                     this.total+=r.value;

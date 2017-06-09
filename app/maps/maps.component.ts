@@ -49,7 +49,7 @@ export class MapsComponent implements OnInit{
             for(let r of res.features){
                 // Get lat and lon from Point
                 let splitted = r.geometry.coordinates.toString().split(",",2);
-                let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
+                let weight = Math.floor(r.properties.dl_bitrate/441)+1;
                 //Get the weight for the measurement
                 // let weight = r.properties.dl_bitrate;
                 this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
@@ -109,22 +109,6 @@ export class MapsComponent implements OnInit{
             'rgba(21, 233, 0, 1)',
             'rgba(0, 255, 0, 1)'
         ];
-        // let gradient = [
-        //     'rgba(0, 255, 255, 0)',
-        //     'rgba(0, 255, 255, 1)',
-        //     'rgba(0, 191, 255, 1)',
-        //     'rgba(0, 127, 255, 1)',
-        //     'rgba(0, 63, 255, 1)',
-        //     'rgba(0, 0, 255, 1)',
-        //     'rgba(0, 0, 223, 1)',
-        //     'rgba(0, 0, 191, 1)',
-        //     'rgba(0, 0, 159, 1)',
-        //     'rgba(0, 0, 127, 1)',
-        //     'rgba(63, 0, 91, 1)',
-        //     'rgba(127, 0, 63, 1)',
-        //     'rgba(191, 0, 31, 1)',
-        //     'rgba(255, 0, 0, 1)'
-        // ];
         this.heatmap.set('gradient', this.heatmap.get('gradient') ? null : gradient);
     }
     changeRadius() {
@@ -150,9 +134,9 @@ export class MapsComponent implements OnInit{
                     for(let r of res.features){
                         // Get lat and lon from Point
                         let splitted = r.geometry.coordinates.toString().split(",",2);
-                        // let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
+                        let weight = Math.floor(r.properties.dl_bitrate/441)+1;
                         //Get the weight for the measurement
-                        let weight = r.properties.dl_bitrate;
+                        // let weight = r.properties.dl_bitrate;
                         this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
                     }
                     this.heatmap.setMap(this.map);
@@ -169,9 +153,9 @@ export class MapsComponent implements OnInit{
                 for(let r of res.features){
                     // Get lat and lon from Point
                     let splitted = r.geometry.coordinates.toString().split(",",2);
-                    // let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
+                    let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
                     //Get the weight for the measurement
-                    let weight = r.properties.dl_bitrate;
+                    // let weight = r.properties.dl_bitrate;
                     this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
                 }
                 this.heatmap.setMap(this.map);

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
       <div id="wrapper">
           <navbar></navbar>
           <router-outlet></router-outlet>
-          <footerComp></footerComp>
+          <!--<footerComp></footerComp>-->
       </div>
 `
 })

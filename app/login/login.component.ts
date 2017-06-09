@@ -38,11 +38,12 @@ export class LoginComponent implements OnInit   {
                     this._router.navigate(['/home']);
                     location.reload();
                 }
-                else {
-                    this.error = 'Username or password is incorrect';
-                    this.loading = false;
-                }
                 //TODO write catch function
+            },err=>{
+                console.log('eskase error: '+err)
+                this.error = 'Username or password is incorrect';
+                this.loading = false;
+
             });
     }
 }

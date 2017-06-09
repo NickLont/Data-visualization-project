@@ -21,23 +21,23 @@ export class DataService {
         console.log('ta header value einai: '+this.headers.values());
     }
 
-    //TODO change or remove get all
-    getAll(): Observable<Measurements[]>{
-        return this._http
-            .get(this.baseUrl+'measurement/all/', {headers : this.headers})
-            .map((res: Response)=>mapMeasurments(res))
-            .catch(this.handleError);
-    }
+    // //TODO change or remove get all
+    // getAll(): Observable<Measurements[]>{
+    //     return this._http
+    //         .get(this.baseUrl+'measurement/allproviders/', {headers : this.headers})
+    //         .map((res: Response)=>mapMeasurments(res))
+    //         .catch(this.handleError);
+    // }
 
     getOperators(networkType?: String){
         if(networkType){
             return this._http
-                .get(this.baseUrl+'measurement/all/'+networkType+'/', {headers : this.headers})
+                .get(this.baseUrl+'measurement/allproviders/'+networkType+'/', {headers : this.headers})
                 .map((res:Response)=>res.json())
                 .catch(this.handleError);
         }
         return this._http
-            .get(this.baseUrl+'measurement/all/', {headers : this.headers})
+            .get(this.baseUrl+'measurement/allproviders/', {headers : this.headers})
             .map((res:Response)=>res.json())
             .catch(this.handleError);
     }
