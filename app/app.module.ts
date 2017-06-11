@@ -8,7 +8,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent }  from './app.component';
 import {routing} from "./app.routing";
 import {NavbarComponent} from "./navbar/navbar.component";
-import {FooterComponent} from "./footer/footer.component";
 import {HomeComponent} from "./home/home.component";
 import {DataConsumerPageComponent} from "./data-consumer-page/data-consumer-page";
 import { LoginComponent } from './login/login.component';
@@ -47,7 +46,6 @@ import {ButtonsModule} from 'ngx-bootstrap';
     declarations: [
         AppComponent,
         NavbarComponent,
-        FooterComponent,
         HomeComponent,
         DataConsumerPageComponent,
         LoginComponent,
