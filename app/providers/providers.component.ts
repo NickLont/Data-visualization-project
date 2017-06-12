@@ -50,7 +50,7 @@ export class ProvidersComponent implements  OnInit{
     public pieChartLabels:string[] = [];
     public pieChartData:number[] = [];
     public pieChartType:string = 'pie';
-    public pieChartColors: any[]=[{backgroundColor:['#97BBCD','#FDB45C','#46BFBD','#F7464A','#4D5360']}]
+    public pieChartColors: any[]=[{backgroundColor:['#97BBCD','#FDB45C','#46BFBD','#F7464A','#4D5360']}];
     public pieChartOptions:any = {
         // title: {
         //     display: true,
