@@ -1,5 +1,6 @@
 #mainNavbar{
   margin-bottom: 0 !important;
+  border-bottom: 0 !important;
   background-color: #222222;
   width:100%;
   border-top-width: 0px; !important;

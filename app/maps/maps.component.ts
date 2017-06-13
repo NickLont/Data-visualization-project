@@ -73,6 +73,7 @@ export class MapsComponent implements OnInit{
             this.map = this.heatmap.getMap();
 
             this.legend.id='legend';
+
             this.legend.innerHTML='<h3>Test String</h3>';
             this.map.controls[google.maps.ControlPosition.RIGHT_TOP].push(this.legend)
 

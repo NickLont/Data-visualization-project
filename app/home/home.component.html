@@ -23,11 +23,11 @@
 
   <hr>
 
-  <div class="row">
+  <div class="row" *ngIf="dataReady">
     <div class="col-sm-8">
       <h2>Welcome to the Data Visualization Project!</h2>
       <p>A picture is worth a million rows. Data visualization makes insights come alive with impact and communicates complex ideas simply. Expressive visualization enables you to get beyond static charts to create multi-faceted views of data and explore every dimension.</p>
-      <h4>Visit the links in the navigation bar to view dynamic visualisations of over 600.000 measurements.</h4>
+      <h4>Visit the links in the navigation bar to view dynamic visualisations of {{count}} measurements.</h4>
       <p>
         <a class="btn btn-default btn-lg" routerLink='/providers'>Go »</a>
       </p>
@@ -35,15 +35,15 @@
     <div class="col-sm-4">
       <h2>Contact Us</h2>
       <address>
-        <strong>Start Bootstrap</strong>
-        <br>3481 Melrose Place
-        <br>Beverly Hills, CA 90210
+        <strong>Department of Informatics & Telematics</strong>
+        <br>9, Omirou Str.
+        <br>177 78, Tavros
         <br>
       </address>
       <address>
-        <abbr title="Phone">P:</abbr>(123) 456-7890
+        <abbr title="Phone">P:</abbr>+30 210 9549 400 / 402
         <br>
-        <abbr title="Email">E:</abbr> <a href="mailto:#">name@example.com</a>
+        <abbr title="Email">E:</abbr> <a href="mailto:#">itpsec@hua.gr</a>
       </address>
     </div>
   </div>

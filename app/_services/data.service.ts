@@ -29,6 +29,14 @@ export class DataService {
     //         .catch(this.handleError);
     // }
 
+    getMeasurementCount(){
+        return this._http
+            .get(this.baseUrl+'/measurement/count/', {headers : this.headers})
+            .map((res:Response)=>res.json())
+            .catch(this.handleError);
+
+    }
+
     getOperators(networkType?: String){
         if(networkType){
             return this._http
