@@ -27,13 +27,13 @@ form{
 }
 
 #grad{
-    /*background: rgba(255,0,0,1);!* Old Browsers' *!*/
-    /*background: -moz-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109, 0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); !* FF3.6+ *!*/
-    /*background: -webkit-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); !* Chrome10+,Safari5.1+ *!*/
-    /*background: -o-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); !* Opera 11.10+ *!*/
-    /*background: -ms-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); !* IE 10+ *!*/
+    background: rgba(255,0,0,1);/* Old Browsers' */
+    background: -moz-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109, 0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); /* FF3.6+ */
+    background: -webkit-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); /* IE 10+ */
     /*background: linear-gradient(to right, rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%);!* W3C *!*/
-    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#00ff00', GradientType=1 );!* IE6-9 *!*/
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#00ff00', GradientType=1 );/* IE6-9 */
     width: 80%;
     height: 30px;
 }
