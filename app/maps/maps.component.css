@@ -1,5 +1,6 @@
 @media all and (max-width: 950px ) {
-    #floating-panel{display: none}
+    #floating-panel{display: none;}
+    #legend{display: none!important;}
 }
 
 #floating-panel {
@@ -25,3 +26,61 @@ form{
     margin-top: 5px;
 }
 
+#grad{
+    /*background: rgba(255,0,0,1);!* Old Browsers' *!*/
+    /*background: -moz-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109, 0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); !* FF3.6+ *!*/
+    /*background: -webkit-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); !* Chrome10+,Safari5.1+ *!*/
+    /*background: -o-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); !* Opera 11.10+ *!*/
+    /*background: -ms-linear-gradient(right, rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%); !* IE 10+ *!*/
+    /*background: linear-gradient(to right, rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%);!* W3C *!*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#00ff00', GradientType=1 );!* IE6-9 *!*/
+    width: 80%;
+    height: 30px;
+}
+
+.ticks {
+    display: -ms-flexbox;
+    display: flex;
+    /*-ms-flex-pack: distribute;*/
+    justify-content: space-around;
+    height: 10px;
+    width: 100%;
+    background: inherit;
+}
+
+.ticks * {
+    width: 1px;
+    background: black;
+}
+
+#legend {
+    width: 30% ;
+    height: 70px;
+    background: white;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #eeeeee;
+    float: right;
+}
+
+.legend-labels {
+    width: 100%;
+    height: 25px;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-around;
+    color: black;
+}
+
+.legend-labels *{
+    -ms-flex: 1;
+    flex: 1;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    text-align: center;
+}

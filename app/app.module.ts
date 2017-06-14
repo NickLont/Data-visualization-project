@@ -9,7 +9,6 @@ import { AppComponent }  from './app.component';
 import {routing} from "./app.routing";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {HomeComponent} from "./home/home.component";
-import {DataConsumerPageComponent} from "./data-consumer-page/data-consumer-page";
 import { LoginComponent } from './login/login.component';
 import { ProvidersComponent } from "./providers/providers.component";
 import {StatBarChartsComponent} from "./stat-barcharts/stat-barcharts.component";
@@ -47,7 +46,6 @@ import {ButtonsModule} from 'ngx-bootstrap';
         AppComponent,
         NavbarComponent,
         HomeComponent,
-        DataConsumerPageComponent,
         LoginComponent,
         ProvidersComponent,
         StatBarChartsComponent,

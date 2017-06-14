@@ -26,14 +26,15 @@ export class MapsComponent implements OnInit{
     ];
 
     legend = document.createElement('div');
+    leftToRightGradient='left';
+    gradientMax=0;
 
     @ViewChild(HeatmapLayer) heatmaplayer : HeatmapLayer;
     heatmap: google.maps.visualization.HeatmapLayer;
     map: google.maps.Map;
     points : any= [
-        // {location: new google.maps.LatLng(38.039319999999975, 23.8508), weight: 1},
-        // {location: new google.maps.LatLng(38.03180999999995, 23.9843), weight: 10},
     ];
+
 
     constructor( private _dataservice : DataService,
                  private _router : Router
@@ -53,13 +54,11 @@ export class MapsComponent implements OnInit{
                 //Get the weight for the measurement
                 // let weight = r.properties.dl_bitrate;
                 this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
+                this.gradientMax=4407;
             }
             this.heatmap.setMap(this.map);
             // this.heatmap.set('maxIntensity', 10);
             // this.heatmap.set('dissipating', false);
-            console.log("to points 0 einai: "+(JSON.stringify(this.points[0])))
-            console.log("to points 1 einai: "+(JSON.stringify(this.points[1])))
-            console.log('to opacity einai: '+this.heatmap.get('opacity'))
         },err=>{
             if(err==='Unauthorized'){
                 console.log('unauthorized and redirecting');
@@ -72,9 +71,7 @@ export class MapsComponent implements OnInit{
             this.heatmap = heatmap;
             this.map = this.heatmap.getMap();
 
-            this.legend.id='legend';
 
-            this.legend.innerHTML='<h3>Test String</h3>';
             this.map.controls[google.maps.ControlPosition.RIGHT_TOP].push(this.legend)
 
         });
@@ -89,28 +86,29 @@ export class MapsComponent implements OnInit{
         // let gradient = [
         //     'rgba(255, 0, 0, 0)',
         //     'rgba(255, 0, 0, 1)',
+        //     'rgba(233, 21, 0, 1)',
+        //     'rgba(212, 42, 0, 1)',
         //     'rgba(191, 63, 0, 1)',
+        //     'rgba(170, 85, 0, 1)',
+        //     'rgba(148, 106, 0, 1)',
         //     'rgba(127, 127, 0, 1)',
+        //     'rgba(106, 148, 0, 1)',
+        //     'rgba(85, 170, 0, 1)',
         //     'rgba(63, 191, 0, 1)',
+        //     'rgba(42, 212, 0, 1)',
+        //     'rgba(21, 233, 0, 1)',
         //     'rgba(0, 255, 0, 1)'
         // ];
         let gradient = [
             'rgba(255, 0, 0, 0)',
-            'rgba(255, 0, 0, 1)',
-            'rgba(233, 21, 0, 1)',
-            'rgba(212, 42, 0, 1)',
-            'rgba(191, 63, 0, 1)',
-            'rgba(170, 85, 0, 1)',
-            'rgba(148, 106, 0, 1)',
-            'rgba(127, 127, 0, 1)',
-            'rgba(106, 148, 0, 1)',
-            'rgba(85, 170, 0, 1)',
-            'rgba(63, 191, 0, 1)',
-            'rgba(42, 212, 0, 1)',
-            'rgba(21, 233, 0, 1)',
-            'rgba(0, 255, 0, 1)'
+            'rgba(255,0,0,1)',
+            'rgba(251, 109,0,1)',
+            'rgba(254, 189, 0,1)',
+            'rgba(209, 252, 1,1)',
+            'rgba(11, 255, 0,1)'
         ];
         this.heatmap.set('gradient', this.heatmap.get('gradient') ? null : gradient);
+        this.leftToRightGradient = this.heatmap.get('gradient') ? 'right' : 'left';
     }
     changeRadius() {
         this.heatmap.set('radius', this.heatmap.get('radius') ? null : 5);
@@ -158,6 +156,7 @@ export class MapsComponent implements OnInit{
                     //Get the weight for the measurement
                     // let weight = r.properties.dl_bitrate;
                     this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
+                    this.gradientMax=16638;
                 }
                 this.heatmap.setMap(this.map);
 
@@ -170,27 +169,10 @@ export class MapsComponent implements OnInit{
 
         }
     }
+    getMyStyles() {
+        let myStyle = {'background':'linear-gradient(to '+this.leftToRightGradient+', rgba(255,0,0,1) 0%, rgba(251, 109,0,1) 25%, rgba(254, 189, 0,1) 50%, rgba(209, 252, 1,1) 75%, rgba(11, 255, 0,1) 100%)'}
+        return myStyle;
+    }
 
-        //
-    // loadRandomPoints() {
-    //     this.points = [];
-    //
-    //     for (let i = 0 ; i < 9; i++) {
-    //         this.addPoint();
-    //     }
-    // }
-    //
-    // addPoint() {
-    //     let randomLat = Math.random() * 0.0099 + 37.782551;
-    //     let randomLng = Math.random() * 0.0099 + -122.445368;
-    //     let randomWgt = Math.random() * 10;
-    //     let latlng = new google.maps.LatLng(randomLat, randomLng);
-    //     this.points.push(latlng);
-    //     // this.points.push({location: latlng, weight: randomWgt},);
-    // }
-    // onMapReady(map:any) {
-    //     console.log('map', map);
-    //     console.log('markers', map.markers);  // to get all markers as an array
-    // }
 
 }

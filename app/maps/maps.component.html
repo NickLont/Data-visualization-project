@@ -14,27 +14,44 @@
         <heatmap-layer [data]="points"></heatmap-layer>
     </ngui-map>
 
-    <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
-        <div class="form-inline" id="upperInline">
-            <div class="form-group">
-                <label for="type">Type </label>
-                <div id="type">
-                    <select class="form-control"  [(ngModel)]="model.type" name="type" >
-                        <option *ngFor="let measurementType of measurementTypes"
-                                [value]="measurementType.value">{{measurementType.name}}</option>
-                    </select>
+    <div class="row">
+        <!--Start of form-->
+        <div class="col-md-6">
+            <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+                <div class="form-inline" id="upperInline">
+                    <div class="form-group">
+                        <label for="type">Type </label>
+                        <div id="type">
+                            <select class="form-control"  [(ngModel)]="model.type" name="type" >
+                                <option *ngFor="let measurementType of measurementTypes"
+                                        [value]="measurementType.value">{{measurementType.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="provFromgroup">
+                        <label for="provider">Provider </label>
+                        <div id="provider">
+                            <select class="form-control"  [(ngModel)]="model.provider" name="provider" >
+                                <option *ngFor="let p of providers"
+                                        [value]="p.value">{{p.name}}</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
+                <button type="submit" class="btn btn-default">Change</button>
+            </form>
+        </div>
+        <!--Start of legend-->
+        <div id="legend" class="col-md-6">
+            <div class="legend-labels" id ="value">
+                <div>0 kb/s</div><div></div><div></div><div></div><div>{{gradientMax}} kb/s</div>
             </div>
-            <div class="form-group" id="provFromgroup">
-                <label for="provider">Provider </label>
-                <div id="provider">
-                    <select class="form-control"  [(ngModel)]="model.provider" name="provider" >
-                        <option *ngFor="let p of providers"
-                                [value]="p.value">{{p.name}}</option>
-                    </select>
-                </div>
+            <div class="ticks">
+                <div></div><div style="visibility: hidden"></div><div style="visibility: hidden"></div><div style="visibility: hidden"></div><div></div>
+            </div>
+            <!--<div id="grad">-->
+            <div id="grad" [ngStyle]="getMyStyles()">
             </div>
         </div>
-        <button type="submit" class="btn btn-default">Change</button>
-    </form>
+    </div>
 </div>
