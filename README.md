@@ -31,6 +31,7 @@ Install the npm packages described in the `package.json` and verify that it work
 npm install --global
 npm start
 ```
-Open browser to [`http://localhost:8080`](http://localhost:8080)
+Open browser to [`http://localhost:3001`](http://localhost:3001)
 
-if you want to use other port, open `package.json` file, then change port in `--port 8080` START script
+if you want to use other port, open `package.json` file, then change port in `--port 3001` START script. Also
+open config/webpack.dev.js and change output.publicPath `http://localhost:3001/`
