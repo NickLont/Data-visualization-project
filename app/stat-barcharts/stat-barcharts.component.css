@@ -22,3 +22,7 @@
 #upperInline{
     margin-top: 20px;
 }
+
+#dateWarning{
+    color: red;
+}
