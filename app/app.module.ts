@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule }    from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 
 import { AppComponent }  from './app.component';
@@ -58,7 +59,8 @@ import {ButtonsModule} from 'ngx-bootstrap';
         DataService,
         AuthenticationService,
         AuthGuard,
-        NavBarService
+        NavBarService,
+        {provide: LocationStrategy, useClass: HashLocationStrategy}
     ],
     bootstrap:    [ AppComponent ]
 })
