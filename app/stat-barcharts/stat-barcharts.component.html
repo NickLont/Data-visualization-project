@@ -41,9 +41,10 @@
                         <label for="daterange">Date Range </label>
                         <div id='daterange'>
                             <my-date-range-picker  name="mydaterange" [options]="myDateRangePickerOptions"
-                                                   [(ngModel)]="model.dates" required>
+                                                   [(ngModel)]="model.dates">
                             </my-date-range-picker>
                         </div>
+                        <div *ngIf="!model.dates" class="help-block">Please insert date range</div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-default">Change</button>

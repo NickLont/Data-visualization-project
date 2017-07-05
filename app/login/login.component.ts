@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit   {
                 }
                 //TODO write catch function
             },err=>{
-                console.log('eskase error: '+err)
+                console.log('error: '+err)
                 this.error = 'Username or password is incorrect';
                 this.loading = false;
 

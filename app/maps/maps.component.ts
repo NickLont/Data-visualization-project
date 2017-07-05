@@ -126,7 +126,6 @@ export class MapsComponent implements OnInit{
     }
 
     onSubmit(){
-        console.log('to type einai: '+this.model.type+'kai o provider einai: '+this.model.provider);
         this.points=[];
         if(this.model.type =='uplink'){
             this._dataservice.getUplinkPoints(this.model.provider).subscribe(res=>{

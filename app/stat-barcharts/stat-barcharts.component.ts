@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DataService} from "../_services/data.service";
 import {Router} from "@angular/router";
 import { IMyOptions} from 'mydaterangepicker';
+import {isUndefined} from "util";
 
 
 @Component({
@@ -118,7 +119,9 @@ export class StatBarChartsComponent implements  OnInit{
     }
     onSubmit(){
         //Check to see for Date Range entries
-        if(this.model.dates.formatted){
+        console.log("ta dates einai: "+this.model.dates);
+
+        if(!!this.model.dates.beginEpoc){
             let beginDate = new Date(this.model.dates.beginEpoc*1000);
             let endDate = new Date(this.model.dates.endEpoc*1000);
             let formattedBeginDate : String= beginDate.getFullYear()+"-"+(beginDate.getMonth()+1)+"-"+beginDate.getDate();
@@ -127,6 +130,8 @@ export class StatBarChartsComponent implements  OnInit{
             this._dataservice.getStats(this.model.type, this.model.gen, formattedBeginDate,formattedEndDate)
                 .subscribe(res => {
                     this.statistics = res;
+                    console.log("to res einai: "+res);
+
                     // this.barChartOptions.title.text=this.model.type;
 
                     //Setting graph legend and title

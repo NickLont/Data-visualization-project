@@ -103,9 +103,9 @@ export class ProvidersComponent implements  OnInit{
                     this.pieChartData.push(r.value);
                     this.total+=r.value;
                 }
-                console.log("to total einai: "+ this.total);
+                // console.log("to total einai: "+ this.total);
                 this.dataReady = true;
-                console.log('data ready to parse');
+                // console.log('data ready to parse');
             }, err=>{
                 if(err==='Unauthorized'){
                     console.log('aunauthorized and redirecting');

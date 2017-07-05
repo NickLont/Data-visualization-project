@@ -26,7 +26,7 @@ export class AuthenticationService{
         urlSearchParams.append('username', username);
         urlSearchParams.append('password', password);
         let body = urlSearchParams.toString();
-        console.log('to body einai: '+ body);
+        // console.log('to body einai: '+ body);
 
 
          return this.http
@@ -34,8 +34,8 @@ export class AuthenticationService{
             .map((response:Response)=>{
                 //get token from header
                 let token = response.headers.get('Token');
-                console.log('ta headers einai: '+response.headers.values());
-                console.log('to token einai:'+ token);
+                // console.log('ta headers einai: '+response.headers.values());
+                // console.log('to token einai:'+ token);
                 if (token ){
                     //set token
                     this.token = response.headers.get('Token');

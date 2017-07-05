@@ -7,18 +7,18 @@ import { AuthenticationService} from './authentication.service';
 
 @Injectable()
 export class DataService {
-    // private baseUrl : string = 'http://test.hua.gr:8080/HuaTester/api/';
-    private baseUrl : string = 'http://localhost:8081/api/';
+    private baseUrl : string = 'http://test.hua.gr:8080/HuaTester/api/';
+    // private baseUrl : string = 'http://localhost:8081/api/';
     public headers : Headers;
 
     constructor(
         private _http : Http,
         private _authenticationService : AuthenticationService){
-        console.log('Data Service started');
+        // console.log('Data Service started');
         this.headers = new Headers();
         this.headers.set('token', this._authenticationService.token);
-        console.log('ta header keys einai: '+this.headers.keys());
-        console.log('ta header value einai: '+this.headers.values());
+        // console.log('ta header keys einai: '+this.headers.keys());
+        // console.log('ta header value einai: '+this.headers.values());
     }
 
     // //TODO change or remove get all
