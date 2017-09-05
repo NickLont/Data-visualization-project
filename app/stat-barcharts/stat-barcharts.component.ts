@@ -15,6 +15,7 @@ export class StatBarChartsComponent implements  OnInit{
     public dataReady : boolean = false;
     public statistics : any;
     public unit : string ;
+    public currentDate : Date;
 
     model: any = [];
     measurementTypes=[
@@ -25,7 +26,8 @@ export class StatBarChartsComponent implements  OnInit{
     gens=[
         {name:'All', value:'no'},
         {name:'2G', value:'2g'},
-        {name:'3G', value:'3g'}
+        {name:'3G', value:'3g'},
+        {name:'4G', value:'4g'},
     ];
 
     // Date Range Options
@@ -34,8 +36,8 @@ export class StatBarChartsComponent implements  OnInit{
         // other options...
         dateFormat: 'dd/mmm/yyyy',
         inline: false,
-        disableUntil: {year:2013, month:7, day:19},
-        disableSince: {year:2014, month:7, day:14},
+        // disableUntil: {year:2013, month:7, day:19},
+        // disableSince: {year:2014, month:7, day:14},
         sunHighlight: false,
     };
 
@@ -47,6 +49,8 @@ export class StatBarChartsComponent implements  OnInit{
     ngOnInit(){
         this._dataservice.getStats('levelStats','no')
             .subscribe(res => {
+                this.currentDate = new Date;
+                console.log('o minas einai: '+ this.currentDate.getDate());
                 // Initializing Form and Chart Values
                 this.statistics = res;
                 this.model.type='levelStats';
@@ -54,8 +58,10 @@ export class StatBarChartsComponent implements  OnInit{
                 this.barChartOptions.scales.yAxes[0].scaleLabel.labelString='dB';
                 this.unit='dB';
                 this.model.gen='no';
+                // this.model.dates = {beginDate: {year: 2013, month: 7, day: 20},
+                //     endDate: {year: 2014, month: 7, day: 13}};
                 this.model.dates = {beginDate: {year: 2013, month: 7, day: 20},
-                    endDate: {year: 2014, month: 7, day: 13}};
+                    endDate: {year: this.currentDate.getFullYear(), month: this.currentDate.getMonth()+1, day: this.currentDate.getDate()}};
 
                 for(let r of res){
                     this.barChartLabels.push(r.operatorname);
@@ -119,7 +125,7 @@ export class StatBarChartsComponent implements  OnInit{
     }
     onSubmit(){
         //Check to see for Date Range entries
-        console.log("ta dates einai: "+this.model.dates);
+        // console.log("ta dates einai: "+this.model.dates);
 
         if(!!this.model.dates.beginEpoc){
             let beginDate = new Date(this.model.dates.beginEpoc*1000);
