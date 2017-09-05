@@ -17,7 +17,8 @@ export class HomeComponent implements  OnInit {
 
 
   ngOnInit(){
-    this._dataservice.getMeasurementCount()
+      // location.reload();
+      this._dataservice.getMeasurementCount()
         .subscribe(res => {
           this.count = res;
           this.dataReady = true;
