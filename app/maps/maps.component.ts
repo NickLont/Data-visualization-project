@@ -118,11 +118,11 @@ export class MapsComponent implements OnInit{
         this.heatmap.set('opacity', this.heatmap.get('opacity') ? null : 0.2);
     }
     onZoomChange(event : any){
-        console.log(event);
+        // console.log(event);
     }
 
     onMapClick(event : any) {
-        console.log(event);
+        // console.log(event);
     }
 
     onSubmit(){

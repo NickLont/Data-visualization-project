@@ -50,7 +50,6 @@ export class StatBarChartsComponent implements  OnInit{
         this._dataservice.getStats('levelStats','no')
             .subscribe(res => {
                 this.currentDate = new Date;
-                console.log('o minas einai: '+ this.currentDate.getDate());
                 // Initializing Form and Chart Values
                 this.statistics = res;
                 this.model.type='levelStats';
@@ -136,7 +135,7 @@ export class StatBarChartsComponent implements  OnInit{
             this._dataservice.getStats(this.model.type, this.model.gen, formattedBeginDate,formattedEndDate)
                 .subscribe(res => {
                     this.statistics = res;
-                    console.log("to res einai: "+res);
+                    // console.log("to res einai: "+res);
 
                     // this.barChartOptions.title.text=this.model.type;
 
