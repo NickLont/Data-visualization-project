@@ -36,5 +36,5 @@ npm start
 ```
 Open browser to [`http://localhost:3001`](http://localhost:3001)
 
-if you want to use other port, open `package.json` file, then change port in `--port 3001` START script. Also
+If you want to use another port, open `package.json` file, then change port in `--port 3001` START script. Also
 open config/webpack.dev.js and change output.publicPath `http://localhost:3001/`
