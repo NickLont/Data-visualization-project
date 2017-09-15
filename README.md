@@ -5,7 +5,7 @@ Live version: <a href="http://test.hua.gr/datavisual/#/login" target="_blank" ti
 
 ## Installation instructions:
 
-## Prerequisites
+### Prerequisites
 
 Node.js and npm are essential to Angular development. 
     
@@ -16,7 +16,7 @@ Get it now</a> if it's not already installed on your machine.
 by running `node -v` and `npm -v` in a terminal/console window.
 Older versions produce errors.
 
-## Create a new project
+### Create a new project
 
 Clone this repo into new project folder (e.g., `my-proj`).
 ```shell
@@ -24,7 +24,7 @@ git clone https://github.com/NickLont/Data-visualization-project.git  my-proj
 cd my-proj
 ```
 
-## Install npm packages
+### Install npm packages
 
 > See node and npm version notes above
 
