@@ -1,7 +1,7 @@
 # Angular Data Visualization Thesis Project
 
 Live version: <a href="http://test.hua.gr/datavisual/#/login" target="_blank" title="Visite Site">
-              Data visualization project</a> (Use Google Chrome)
+              Data visualization project</a>
 
 ## Installation instructions:
 
