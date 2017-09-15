@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HeatmapLayer} from '@ngui/map';
 import {DataService} from "../_services/data.service";
 import {Router} from "@angular/router";
@@ -52,13 +52,10 @@ export class MapsComponent implements OnInit{
                 let splitted = r.geometry.coordinates.toString().split(",",2);
                 let weight = Math.floor(r.properties.dl_bitrate/441)+1;
                 //Get the weight for the measurement
-                // let weight = r.properties.dl_bitrate;
                 this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
                 this.gradientMax=4407;
             }
             this.heatmap.setMap(this.map);
-            // this.heatmap.set('maxIntensity', 10);
-            // this.heatmap.set('dissipating', false);
         },err=>{
             if(err==='Unauthorized'){
                 console.log('unauthorized and redirecting');
@@ -75,7 +72,6 @@ export class MapsComponent implements OnInit{
             this.map.controls[google.maps.ControlPosition.RIGHT_TOP].push(this.legend)
 
         });
-        // this.heatmap.set('radius',1)
 
     }
 
@@ -83,22 +79,7 @@ export class MapsComponent implements OnInit{
         this.heatmap.setMap(this.heatmap.getMap() ? null : this.map);
     }
     changeGradient() {
-        // let gradient = [
-        //     'rgba(255, 0, 0, 0)',
-        //     'rgba(255, 0, 0, 1)',
-        //     'rgba(233, 21, 0, 1)',
-        //     'rgba(212, 42, 0, 1)',
-        //     'rgba(191, 63, 0, 1)',
-        //     'rgba(170, 85, 0, 1)',
-        //     'rgba(148, 106, 0, 1)',
-        //     'rgba(127, 127, 0, 1)',
-        //     'rgba(106, 148, 0, 1)',
-        //     'rgba(85, 170, 0, 1)',
-        //     'rgba(63, 191, 0, 1)',
-        //     'rgba(42, 212, 0, 1)',
-        //     'rgba(21, 233, 0, 1)',
-        //     'rgba(0, 255, 0, 1)'
-        // ];
+
         let gradient = [
             'rgba(255, 0, 0, 0)',
             'rgba(255,0,0,1)',
@@ -134,7 +115,6 @@ export class MapsComponent implements OnInit{
                         let splitted = r.geometry.coordinates.toString().split(",",2);
                         let weight = Math.floor(r.properties.dl_bitrate/441)+1;
                         //Get the weight for the measurement
-                        // let weight = r.properties.dl_bitrate;
                         this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
                     }
                     this.heatmap.setMap(this.map);
@@ -153,7 +133,6 @@ export class MapsComponent implements OnInit{
                     let splitted = r.geometry.coordinates.toString().split(",",2);
                     let weight = Math.floor(r.properties.dl_bitrate/1664)+1;
                     //Get the weight for the measurement
-                    // let weight = r.properties.dl_bitrate;
                     this.points.push({location: new google.maps.LatLng(splitted[1], splitted[0]), weight: weight})
                     this.gradientMax=16638;
                 }

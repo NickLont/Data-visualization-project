@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from "../_services/data.service";
 import {Router} from "@angular/router";
 
@@ -21,10 +21,7 @@ export class NetworkStatsComponent implements  OnInit {
             .subscribe(res => {
                 this.networks = res;
                 for(let r of res){
-                    // console.log('to key einai: '+r.key);
-                    // console.log('to index of einai: '+r.key.indexOf("_"));
                     if(r.key.indexOf("_")>-1){
-                        // console.log('mpika edw');
                         this.pieChartLabels.push("Unknown");
                         this.pieChartData.push(r.value);
                         this.total+=r.value;

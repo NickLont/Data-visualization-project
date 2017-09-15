@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from "../_services/data.service";
 import {Router} from "@angular/router";
 
@@ -26,17 +26,11 @@ export class ProvidersComponent implements  OnInit{
             .subscribe(res => {
                 this.operators = res;
                 for(let r of res){
-                    // let clone = JSON.parse(JSON.stringify(this.barChartData));
-                    // let clone = JSON.parse(JSON.stringify(this.barChartData));
-                    // clone.push({data: [r.value], label: r.operatorname});
-                    // this.barChartData = clone;
                     this.pieChartLabels.push(r.operatorname);
                     this.pieChartData.push(r.value);
                     this.total+=r.value;
                 }
-                // console.log("to total einai: "+ this.total);
                 this.dataReady = true;
-                // console.log('data ready to parse');
             }, err=>{
                 if(err==='Unauthorized'){
                     console.log('aunauthorized and redirecting');
@@ -52,12 +46,6 @@ export class ProvidersComponent implements  OnInit{
     public pieChartType:string = 'pie';
     public pieChartColors: any[]=[{backgroundColor:['#97BBCD','#FDB45C','#46BFBD','#F7464A','#4D5360']}];
     public pieChartOptions:any = {
-        // title: {
-        //     display: true,
-        //     fontSize: 24,
-        //     text: 'Internet Providers',
-        //     fontColor:"#7B2F3D"
-        // },
         legend: {
             display: true,
             position: 'bottom'
@@ -103,9 +91,7 @@ export class ProvidersComponent implements  OnInit{
                     this.pieChartData.push(r.value);
                     this.total+=r.value;
                 }
-                // console.log("to total einai: "+ this.total);
                 this.dataReady = true;
-                // console.log('data ready to parse');
             }, err=>{
                 if(err==='Unauthorized'){
                     console.log('aunauthorized and redirecting');

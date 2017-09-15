@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from "../_services/data.service";
 import {Router} from "@angular/router";
 
@@ -17,7 +17,6 @@ export class HomeComponent implements  OnInit {
 
 
   ngOnInit(){
-      // location.reload();
       this._dataservice.getMeasurementCount()
         .subscribe(res => {
           this.count = res;

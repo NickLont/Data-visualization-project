@@ -1,32 +1,29 @@
-import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
-import { FormsModule }    from '@angular/forms';
+import {NgModule}      from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpModule} from '@angular/http';
+import {FormsModule}    from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
-
-import { AppComponent }  from './app.component';
+import {AppComponent}  from './app.component';
 import {routing} from "./app.routing";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {HomeComponent} from "./home/home.component";
-import { LoginComponent } from './login/login.component';
-import { ProvidersComponent } from "./providers/providers.component";
+import {LoginComponent} from './login/login.component';
+import {ProvidersComponent} from "./providers/providers.component";
 import {StatBarChartsComponent} from "./stat-barcharts/stat-barcharts.component";
-import { NetworkStatsComponent } from "./networkStats/networkStats.component";
+import {NetworkStatsComponent} from "./networkStats/networkStats.component";
 import {OSStatsComponent} from "./osStats/osStats.component";
 import {VendorStatsComponent} from "./vendorStats/vendorStats.component";
-import { MapsComponent } from './maps/maps.component';
-
-
+import {MapsComponent} from './maps/maps.component';
 import {ChartsModule} from 'ng2-charts' ;
 
 import {DataService} from "./_services/data.service";
-import { AuthenticationService} from './_services/authentication.service';
-import { AuthGuard } from './_guards/auth.guard';
+import {AuthenticationService} from './_services/authentication.service';
+import {AuthGuard} from './_guards/auth.guard';
 import {NavBarService} from './_services/navBarService.service';
-import { MyDateRangePickerModule } from 'mydaterangepicker';
-import { NguiMapModule } from '@ngui/map';
+import {MyDateRangePickerModule} from 'mydaterangepicker';
+import {NguiMapModule} from '@ngui/map';
 import {ButtonsModule} from 'ngx-bootstrap';
 
 

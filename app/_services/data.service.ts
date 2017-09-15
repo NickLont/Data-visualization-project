@@ -1,9 +1,9 @@
 import {Http, Response, Headers} from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import {Observable} from 'rxjs/Rx';
 import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/map';
 import {Measurements} from "../_models/measurements";
-import { AuthenticationService} from './authentication.service';
+import {AuthenticationService} from './authentication.service';
 
 @Injectable()
 export class DataService {
@@ -14,20 +14,9 @@ export class DataService {
     constructor(
         private _http : Http,
         private _authenticationService : AuthenticationService){
-        // console.log('Data Service started');
         this.headers = new Headers();
         this.headers.set('token', this._authenticationService.token);
-        // console.log('ta header keys einai: '+this.headers.keys());
-        // console.log('ta header value einai: '+this.headers.values());
     }
-
-    // //TODO change or remove get all
-    // getAll(): Observable<Measurements[]>{
-    //     return this._http
-    //         .get(this.baseUrl+'measurement/allproviders/', {headers : this.headers})
-    //         .map((res: Response)=>mapMeasurments(res))
-    //         .catch(this.handleError);
-    // }
 
     getMeasurementCount(){
         return this._http

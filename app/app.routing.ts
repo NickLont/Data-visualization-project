@@ -1,9 +1,9 @@
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './login/login.component';
 
-import { AuthGuard } from './_guards/auth.guard';
+import {AuthGuard} from './_guards/auth.guard';
 import {ProvidersComponent} from "./providers/providers.component";
 import {StatBarChartsComponent} from "./stat-barcharts/stat-barcharts.component";
 import {NetworkStatsComponent} from "./networkStats/networkStats.component";

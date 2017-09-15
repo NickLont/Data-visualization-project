@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
 
 
-import { AuthenticationService } from '../_services/authentication.service';
+import {AuthenticationService} from '../_services/authentication.service';
 import {Router} from "@angular/router";
 import {NavBarService} from '../_services/navBarService.service'
 
@@ -37,7 +36,6 @@ export class LoginComponent implements OnInit   {
                     this._navBarService.setUsername(this.model.username);
                     this._router.navigate(['/home']);
                 }
-                //TODO write catch function
             },err=>{
                 console.log('error: '+err)
                 this.error = 'Username or password is incorrect';

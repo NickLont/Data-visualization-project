@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from "../_services/data.service";
 import {Router} from "@angular/router";
-import { IMyOptions} from 'mydaterangepicker';
-import {isUndefined} from "util";
+import {IMyOptions} from 'mydaterangepicker';
 
 
 @Component({
@@ -36,8 +35,6 @@ export class StatBarChartsComponent implements  OnInit{
         // other options...
         dateFormat: 'dd/mmm/yyyy',
         inline: false,
-        // disableUntil: {year:2013, month:7, day:19},
-        // disableSince: {year:2014, month:7, day:14},
         sunHighlight: false,
     };
 
@@ -57,8 +54,6 @@ export class StatBarChartsComponent implements  OnInit{
                 this.barChartOptions.scales.yAxes[0].scaleLabel.labelString='dB';
                 this.unit='dB';
                 this.model.gen='no';
-                // this.model.dates = {beginDate: {year: 2013, month: 7, day: 20},
-                //     endDate: {year: 2014, month: 7, day: 13}};
                 this.model.dates = {beginDate: {year: 2013, month: 7, day: 20},
                     endDate: {year: this.currentDate.getFullYear(), month: this.currentDate.getMonth()+1, day: this.currentDate.getDate()}};
 
@@ -124,7 +119,6 @@ export class StatBarChartsComponent implements  OnInit{
     }
     onSubmit(){
         //Check to see for Date Range entries
-        // console.log("ta dates einai: "+this.model.dates);
 
         if(!!this.model.dates.beginEpoc){
             let beginDate = new Date(this.model.dates.beginEpoc*1000);
@@ -135,9 +129,6 @@ export class StatBarChartsComponent implements  OnInit{
             this._dataservice.getStats(this.model.type, this.model.gen, formattedBeginDate,formattedEndDate)
                 .subscribe(res => {
                     this.statistics = res;
-                    // console.log("to res einai: "+res);
-
-                    // this.barChartOptions.title.text=this.model.type;
 
                     //Setting graph legend and title
                     if(this.model.type =='levelStats'){
