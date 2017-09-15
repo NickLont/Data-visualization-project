@@ -3,7 +3,7 @@
 Live version: <a href="http://test.hua.gr/datavisual/#/login" target="_blank" title="Visite Site">
               Data visualization project</a> (Use Google Chrome)
 
-##Installation instructions:
+## Installation instructions:
 
 ## Prerequisites
 
