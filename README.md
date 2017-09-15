@@ -26,7 +26,7 @@ cd my-proj
 
 ## Install npm packages
 
-> See npm and nvm version notes above
+> See node and npm version notes above
 
 Install the npm packages described in the `package.json` and verify that it works:
 
